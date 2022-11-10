@@ -31,18 +31,76 @@
             <div class="w3-col s1">
                 <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-light-gray"></i>
             </div>
+            
             <div class="w3-col s2">
-                <a href="#" class="w3-button w3-block">The Purpose</a>
+                <button class="w3-button w3-block"
+                    onclick="document.getElementById('id01').style.display='block'" style="font-weight:900;">About the Project</button>
+                <div id="id01" class="w3-modal">
+                    <div class="w3-modal-content w3-card-4 w3-animate-top">
+                        <header class="w3-container w3-card-4 w3-theme-l1">
+                            <span onclick="document.getElementById('id01').style.display='none'"
+                                class="w3-button w3-display-topright">×</span>
+                            <h3>The Project</h3>
+                        </header>
+                        <div class="w3-padding">
+                            <p>This project investigates lower-body injuries and concussions sustained in the NFL over sets
+                            of 2 seasons in order to attempt to determine factors associated with such injuries. We hope to provide
+                            insights to the factors correlating with high risk to protect players while maintaining the game as
+                            much as is safely possible.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="w3-col s3">
-                <a href="#field" class="w3-button w3-block">The Field</a>
+                <button class="w3-button w3-block" onclick="document.getElementById('id02').style.display='block'"
+                    style="font-weight:900;">The Process</button>
+                <div id="id02" class="w3-modal">
+                    <div class="w3-modal-content w3-card-4 w3-animate-top">
+                        <header class="w3-container w3-card-4 w3-theme-l1">
+                            <span onclick="document.getElementById('id02').style.display='none'"
+                                class="w3-button w3-display-topright">×</span>
+                            <h3>The Process</h3>
+                        </header>
+                        <div class="w3-padding">
+                            <li>Acquire and store the data</li>
+                            <li>Explore the data</li>
+                            <li>Clean the data</li>
+                            <li>Transform the data</li>
+                            <li>Establish Machine Learning Models</li>
+                            <li>Analyze the data</li>
+                            <li>Present the results</li>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="w3-col s3">
-                <a href="#plays" class="w3-button w3-block">The Plays</a>
+                <button class="w3-button w3-block" onclick="document.getElementById('id03').style.display='block'"
+                    style="font-weight:900;">The Features</button>
+                <div id="id03" class="w3-modal">
+                    <div class="w3-modal-content w3-card-4 w3-animate-top">
+                        <header class="w3-container w3-card-4 w3-theme-l1">
+                            <span onclick="document.getElementById('id03').style.display='none'"
+                                class="w3-button w3-display-topright">×</span>
+                            <h3>The Analysis</h3>
+                        </header>
+                        <div class="w3-padding">
+                            <p>This project features numerous types of media to explore the injuries in the NFL:</p>
+                            <li>The Plays - interactive football field that allows the user to explore injurious plays</li>
+                            <li>The Replays - interactive charts that allow the user to filter conditions and plays</li>
+                            <li>Recent Injuries - shows for most recent injuries that have made headlines</li>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
             <div class="w3-col s3">
-                <a href="#team" class="w3-button w3-block">The Team</a>
+                <a href="#team" class="w3-button w3-block">The Report</a>
             </div>
+
+
         </div>
     </div>
 
@@ -50,10 +108,12 @@
     <nav class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-center" style="display:none" id="mySidebar">
         <h1 class="w3-xxxlarge w3-text-theme">Choose a Play: </h1>
         <button class="w3-bar-item w3-button w3-xlarge" onclick="w3_close()">Cancel <i class="fa fa-remove"></i></button>
-        <a href="#" class="w3-bar-item w3-button w3-xlarge">Data Sources and Database</a>
-        <a href="#" class="w3-bar-item w3-button w3-xlarge">Interactive Analysis</a>
-        <a href="#" class="w3-bar-item w3-button w3-xlarge">Machine Learning</a>
-        <a href="#" class="w3-bar-item w3-button w3-xlarge">Presentation</a>
+        <a href="webpages/purpose.html" class="w3-bar-item w3-button w3-xlarge">The Purpose</a>
+        <a href="webpages/organization.html" class="w3-bar-item w3-button w3-xlarge">The Organization</a>
+        <a href="webpages/plays.html" class="w3-bar-item w3-button w3-xlarge">The Plays</a>
+        <a href="webpages/replays.html" class="w3-bar-item w3-button w3-xlarge">The Replays</a>
+        <a href="webpages/analysis.html" class="w3-bar-item w3-button w3-xlarge">The Analysis</a>
+        <a href="webpages/presentation.html" class="w3-bar-item w3-button w3-xlarge">The Delivery</a>
     </nav>
         
 
@@ -160,77 +220,71 @@
 
     <div class="w3-row-padding">
         <div class="w3-third">
-            <div class="w3-card-4">
-                <header>
-                    <h2 class="w3-center w3-black w3-hover-dark-grey">The Purpose</h2>
-                </header>
-                
-                <img src="static/images/venn_injuries.png" alt="Injury Venn Diagram" style="width:100%">
-                <!-- <div class="w3-container">
-                </div> -->
-            </div>
+            <a href="webpages/purpose.html">
+                <div class="w3-card-4">
+                    <header>
+                        <h2 class="w3-center w3-black w3-hover-dark-grey">The Purpose</h2>
+                    </header>
+                    <img src="static/images/venn_injuries.png" alt="Injury Venn Diagram" style="width:100%">
+                </div>
+            </a>
         </div>
 
         <div class="w3-third">
-            <div class="w3-card-4">
-                <header>
-                    <h2 class="w3-center w3-black w3-hover-dark-grey">The Organization</h2>
-                </header>
-        
-                <img src="images/PuntAnalytics_DB.png" alt="Injury Venn Diagram" style="width:100%">
-                <!-- <div class="w3-container">
-                </div> -->
-            </div>
+            <a href="webpages/organization.html">
+                <div class="w3-card-4">
+                    <header>
+                        <h2 class="w3-center w3-black w3-hover-dark-grey">The Organization</h2>
+                    </header>
+                    <img src="images/PuntAnalytics_DB.png" alt="Injury Venn Diagram" style="width:100%">
+                </div>
+            </a>
         </div>
 
         <div class="w3-third">
-            <div class="w3-card-4">
-                <header>
-                    <h2 class="w3-center w3-black w3-hover-dark-grey">The Plays</h2>
-                </header>
-        
-                <img src="images/FieldInjuryPlaysTab.png" alt="Injury Venn Diagram" style="width:100%">
-                <!-- <div class="w3-container">
-                </div> -->
-            </div>
+            <a href="webpages/plays.html">
+                <div class="w3-card-4">
+                    <header>
+                        <h2 class="w3-center w3-black w3-hover-dark-grey">The Plays</h2>
+                    </header>
+                    <img src="images/FieldInjuryPlaysTab.png" alt="Injury Venn Diagram" style="width:100%">
+                </div>
+            </a>
         </div>
     </div>
 
     <div class="w3-row-padding">
         <div class="w3-third">
-            <div class="w3-card-4">
-                <header>
-                    <h2 class="w3-center w3-black w3-hover-dark-grey">The Replays</h2>
-                </header>
-
-                <img src="images/Replays.png" alt="Injury Venn Diagram" style="width:100%">
-                <!-- <div class="w3-container">
-                </div> -->
-            </div>
+            <a href="webpages/replays.html">
+                <div class="w3-card-4">
+                    <header>
+                        <h2 class="w3-center w3-black w3-hover-dark-grey">The Replays</h2>
+                    </header>
+                    <img src="images/Replays.png" alt="Injury Venn Diagram" style="width:100%">
+                </div>
+            </a>
         </div>
 
         <div class="w3-third">
-            <div class="w3-card-4">
-                <header>
-                    <h2 class="w3-center w3-black w3-hover-dark-grey">The Analysis</h2>
-                </header>
-
-                <img src="images/K-Means.png" alt="Injury Venn Diagram" style="width:100%">
-                <!-- <div class="w3-container">
-                </div> -->
-            </div>
+            <a href="webpages/analysis.html">
+                <div class="w3-card-4">
+                    <header>
+                        <h2 class="w3-center w3-black w3-hover-dark-grey">The Analysis</h2>
+                    </header>
+                    <img src="images/K-Means.png" alt="Injury Venn Diagram" style="width:100%">
+                </div>
+            </a>
         </div>
 
         <div class="w3-third">
-            <div class="w3-card-4">
-                <header>
-                    <h2 class="w3-center w3-black w3-hover-dark-grey">The Delivery</h2>
-                </header>
-
-                <img src="static/images/PresentationSlide1.png" alt="Injury Venn Diagram" style="width:100%">
-                <!-- <div class="w3-container">
-                </div> -->
-            </div>
+            <a href="webpages/presentation.html">
+                <div class="w3-card-4">
+                    <header>
+                        <h2 class="w3-center w3-black w3-hover-dark-grey">The Delivery</h2>
+                    </header>
+                    <img src="static/images/PresentationSlide1.png" alt="Injury Venn Diagram" style="width:100%">
+                </div>
+            </a>
         </div>
     </div>
 
