@@ -11,14 +11,14 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def index():
-   mars = mongo.db.injuries.find_one()
+   injuries = mongo.db.injuries.find_one()
    return render_template("index.html", injuries=injuries)
 
 
 @app.route("/scrape")
 def scrape():
    injuries = mongo.db.injuries
-   injury_data = scraping.scrape_all()
+   injury_data = scraping.scrape_injuries()
    injuries.update_one({}, {"$set": injury_data}, upsert=True)
    return redirect('/', code=302)
 

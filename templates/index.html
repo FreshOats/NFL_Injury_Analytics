@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -34,7 +35,7 @@
             
             <div class="w3-col s2">
                 <button class="w3-button w3-block"
-                    onclick="document.getElementById('id01').style.display='block'" style="font-weight:900;">About the Project</button>
+                    onclick="document.getElementById('id01').style.display='block'" style="font-weight:900;">The Project</button>
                 <div id="id01" class="w3-modal">
                     <div class="w3-modal-content w3-card-4 w3-animate-top">
                         <header class="w3-container w3-card-4 w3-theme-l1">
@@ -97,7 +98,7 @@
 
 
             <div class="w3-col s3">
-                <a href="#team" class="w3-button w3-block">The Report</a>
+                <a href="#team" class="w3-button w3-block" style="font-weight:900;">The Report</a>
             </div>
 
 
@@ -204,10 +205,15 @@
 
     </div>
 
+
+
+<!-- This starts the Recent Injuries Web Scraping Portion -->
+
+
         <div class="w3-third">
             <div class="w3-card-4 w3-container" style="min-height:500px">
-                <h3>Recent Injuries</h3><br>
-                <p>Scrape the web for recent headlines including 'injury'</p>
+                <h3 class="w3-center"><button class="button button1"><a  href="/scrape">Update Latest Injuries</a></button></h3>          
+                <p>{{injuries.recent_injuries}}</p>
             </div>
         </div>
     </div>

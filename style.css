@@ -1,25 +1,40 @@
 body {
     font-family: "Cambria";
-    background-color: #013369;
     height: 100%;
     margin: 0;
 }
 
 p, h1, h2, h3, h4, li, span { 
     color: white;
-    text-shadow: 2px 2px 4px #000000;
+    text-shadow: 2px 2px 4px black;
     font-family: "Cambria";
 }
 
 
+.button {
+    border: none;
+    color:blanchedalmond;
+    text-align: center;
+    display:inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
 
+.button1 {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+}
 
+.button1:hover {
+    background-color: #013369;
+    color: white;
+}
 
-
-
-
-
-
+a:link {
+    text-decoration: none;
+}
 
 
 
