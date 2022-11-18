@@ -211,11 +211,31 @@
 
 
         <div class="w3-third">
-            <div class="w3-card-4 w3-container" style="min-height:500px">
-                <h3 class="w3-center"><button class="button button1"><a  href="/scrape">Update Latest Injuries</a></button></h3>          
-                <p>{{injuries.recent_injuries}}</p>
+            <div class="w3-card-4 w3-container" style="min-height:500px">               
+                        <div class="col-md-8">
+                            <h3>15 Most Recent NFL Injuries</h3>
+                            <div class="bg-white shadow p-4 rounded results">
+                                {% if results %}
+                                {% for result in results %}
+                                <p> {{ result | striptags }} </p>
+                                {% endfor %}
+                                {% endif %}
+                                <!-- {% for path in image_paths %}
+                                <a href=" {{  path }} "> <img src=" {{ path }} " class="img"> </a>
+                                {% endfor %} -->
+                            </div>
+                            <!-- {% if image_paths %}
+                            <a href="{{url_for('downloader')}}" class="btn btn-primary m-2" id="download">Download
+                                Images<i class="bi bi-cloud-arrow-down-fill m-2"></i></a>
+                            {% endif %} -->
+                        </div>
+                    </div>
+                </form>
+            
             </div>
         </div>
+    
+    
     </div>
 
     
