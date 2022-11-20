@@ -36,8 +36,22 @@ a:link {
     text-decoration: none;
 }
 
+.mystyle {
+    width: 100%;
+    padding: 25px;
+    background-color: coral;
+    color: white;
+    font-size: 25px;
+}
 
-
+.col-container {
+    display: table;
+    width: 60%;
+}
+.col {
+    display: table-cell;
+    padding: 16px;
+}
 
 /* 
 h1 {
