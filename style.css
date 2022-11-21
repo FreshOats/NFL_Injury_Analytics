@@ -8,6 +8,7 @@ p, h1, h2, h3, h4, li, span {
     color: white;
     text-shadow: 2px 2px 4px black;
     font-family: "Cambria";
+    text-decoration: none;
 }
 
 
@@ -36,6 +37,18 @@ a:link {
     text-decoration: none;
 }
 
+a:visited {
+        text-decoration: none;
+}
+
+a:hover {
+        text-decoration: none;
+}
+
+a:active {
+        text-decoration: none;
+}
+
 .mystyle {
     width: 100%;
     padding: 25px;
@@ -47,10 +60,12 @@ a:link {
 .col-container {
     display: table;
     width: 60%;
+    height: 100%;
 }
 .col {
     display: table-cell;
     padding: 16px;
+    height: 100%;
 }
 
 /* 

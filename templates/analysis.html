@@ -17,14 +17,19 @@
     <header class="w3-container w3-theme w3-padding" id="myHeader">
         <div class="w3-center">
             <h1 class="w3-xxxlarge w3-animate-bottom">Injury Statistics - this will rotate through the findings</h1>
-         
-            
-
-
+            <!-- <div class="w3-padding-32">
+                <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey"
+                    onclick="document.getElementById('id01').style.display='block'" style="font-weight:900;">LEARN
+                    W3.CSS</button>
+            </div> -->
         </div>
     </header>
 
-   
+    <!-- Create Overlay for links and messages instead of modals -->
+
+
+
+
     <!-- Side Dropdown Modals -->
     <div class="w3-container">
         <div class="w3-row w3-large w3-light-grey">
@@ -121,13 +126,7 @@
             
 
             <div class="w3-col s3">
-                <a href="replays.html" class="w3-button w3-block" style="font-weight:900;">The Replays</a>
-            </div>
-            <div class="w3-col s3">
-                <a href="analysis.html" class="w3-button w3-block" style="font-weight:900;">The Stats</a>
-            </div>
-            <div class="w3-col s3">
-                <a href="algorithm.html" class="w3-button w3-block" style="font-weight:900;">The Algorithm</a>
+                <a href="#team" class="w3-button w3-block" style="font-weight:900;">New Thing</a>
             </div>
 
 
@@ -136,7 +135,22 @@
 
 
 
-     <!-- Slideshow -->
+    <!-- Side Navigation with Triple Bars -->
+    
+    <nav class="w3-sidebar w3-block w3-card w3-animate-left w3-center" style="display:none" id="mySidebar">
+        <h1 class="w3-xxlarge w3-text-theme">Choose a Play: </h1>
+        
+        <a href="webpages/purpose.html" class="w3-bar-item w3-button w3-xlarge">The Purpose</a>
+        <a href="webpages/organization.html" class="w3-bar-item w3-button w3-xlarge">The Organization</a>
+        <a href="webpages/plays.html" class="w3-bar-item w3-button w3-xlarge">The Plays</a>
+        <a href="webpages/replays.html" class="w3-bar-item w3-button w3-xlarge">The Replays</a>
+        <a href="webpages/analysis.html" class="w3-bar-item w3-button w3-xlarge">The Analysis</a>
+        <a href="webpages/presentation.html" class="w3-bar-item w3-button w3-xlarge">The Delivery</a><br>
+        <button class="w3-bar-item w3-button w3-xlarge" onclick="w3_close()">Cancel <i class="fa fa-remove"></i></button>
+    </nav>
+    
+
+    <!-- Slideshow -->
     <div class="col-container">
         <div class="w3-container w3-col s8">
             <div class="w3-display-container mySlides">
@@ -223,76 +237,71 @@
 
     
   
-    <div class="w3-row-padding col-container">
-        <div class="w3-col s2">
-            <a href="replays.html">
+    <div class="w3-row-padding">
+        <div class="w3-third">
+            <a href="purpose.html">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Replays</h3>
-                        <p class="w3-center w3-hover-dark-grey">Explore the field by position and injury type</p>
+                        <h2 class="w3-center w3-black w3-hover-dark-grey">The Purpose</h2>
                     </header>
-                    <img src="images/FieldInjuryPlaysTab.png" alt="Tableau Field" style="width:100%">
-                </div>
-            </a>
-        </div>
-        
-        <div class="w3-col s2">
-            <a href="analysis.html">
-                <div class="w3-card-4">
-                    <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Stats</h3>
-                        <p class="w3-center w3-hover-dark-grey">Interactive injury analytics</p>
-                    </header>
-                    <img src="images/Replays.png" alt="Bar Chart" style="width:100%">
-                </div>
-            </a>
-        </div>
-        
-        <div class="w3-col s2">
-            <a href="algorithm.html">
-                <div class="w3-card-4">
-                    <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Algorithm</h3>
-                        <p class="w3-center w3-hover-dark-grey">Explore the Machine Learning models and their findings</p>
-                    </header>
-                    <img src="images/K-Means.png" alt="ML Analysis" style="width:100%">
+                    <img src="static/images/venn_injuries.png" alt="Injury Venn Diagram" style="width:100%">
                 </div>
             </a>
         </div>
 
-        
-        <div class="w3-col s2">
+        <div class="w3-third">
             <a href="organization.html">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Organization</h3>
-                        <p class="w3-center w3-hover-dark-grey">Investigate the Data Source and Organization</p>
+                        <h2 class="w3-center w3-black w3-hover-dark-grey">The Organization</h2>
                     </header>
                     <img src="images/PuntAnalytics_DB.png" alt="Database Image" style="width:100%">
                 </div>
             </a>
         </div>
 
-        <div class="w3-col s2">
-            <a href="analysis.html">
+        <div class="w3-third">
+            <a href="plays.html">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Delivery</h3>
-                        <p class="w3-center w3-hover-dark-grey">Walk through the Stakeholder Presentation</p>
+                        <h2 class="w3-center w3-black w3-hover-dark-grey">The Plays</h2>
                     </header>
-                    <img src="images/PresentationSlide1.png" alt="ML 3d Image" style="width:100%">
+                    <img src="images/FieldInjuryPlaysTab.png" alt="Tableau File" style="width:100%">
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="w3-row-padding">
+        <div class="w3-third">
+            <a href="replays.html">
+                <div class="w3-card-4">
+                    <header>
+                        <h2 class="w3-center w3-black w3-hover-dark-grey">The Replays</h2>
+                    </header>
+                    <img src="images/Replays.png" alt="Bar Chart" style="width:100%">
                 </div>
             </a>
         </div>
 
-        <div class="w3-col s2">
+        <div class="w3-third">
+            <a href="analysis.html">
+                <div class="w3-card-4">
+                    <header>
+                        <h2 class="w3-center w3-black w3-hover-dark-grey">The Analysis</h2>
+                    </header>
+                    <img src="images/K-Means.png" alt="ML 3d Image" style="width:100%">
+                </div>
+            </a>
+        </div>
+
+        <div class="w3-third">
             <a href="presentation.html">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Report</h3>
-                        <p class="w3-center w3-hover-dark-grey">Thoroughly examine the project findings</p>
+                        <h2 class="w3-center w3-black w3-hover-dark-grey">The Delivery</h2>
                     </header>
-                    <img src="images/PresentationSlide1.png" alt="Presentation Slide" style="width:100%">
+                    <img src="static/images/PresentationSlide1.png" alt="Presentation Slide" style="width:100%">
                 </div>
             </a>
         </div>
@@ -353,7 +362,9 @@
 
     </div>
 
-    <button class="w3-bar-item w3-button testbtn" onclick="openCity(event,'London')"></button>
+  
+        
+    <button class="w3-bar-item w3-button testbtn w3-padding-16" onclick="openCity(event,'London')"></button>
 
     <!-- Footer -->
     <footer class="w3-container w3-theme-dark">
@@ -367,7 +378,7 @@
 
 
 
-
+ 
 </body>    
 
 
