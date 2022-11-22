@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{url_for('static', filemane='style.css'}}">
 </head>
 
 <body>
@@ -121,13 +121,13 @@
             
 
             <div class="w3-col s3">
-                <a href="replays.html" class="w3-button w3-block" style="font-weight:900;" target="_blank">The Replays</a>
+                <a href="{{url_for('replays')}}" class="w3-button w3-block" style="font-weight:900;" target="_blank">The Replays</a>
             </div>
             <div class="w3-col s3">
-                <a href="stats.html" class="w3-button w3-block" style="font-weight:900;" target="_blank">The Stats</a>
+                <a href="{{url_for('stats')}}" class="w3-button w3-block" style="font-weight:900;" target="_blank">The Stats</a>
             </div>
             <div class="w3-col s3">
-                <a href="algorithm.html" class="w3-button w3-block" style="font-weight:900;">The Algorithm</a>
+                <a href="{{url_for('algorithm')}}" class="w3-button w3-block" style="font-weight:900;">The Algorithm</a>
             </div>
 
 
@@ -225,7 +225,7 @@
   
     <div class="w3-row-padding col-container">
         <div class="w3-col s2">
-            <a href="replays.html" target="_blank">
+            <a href="{{url_for('replays')}}" target="_blank">
                 <div class="w3-card-4">
                     <header>
                         <h3 class="w3-center w3-black w3-hover-dark-grey">The Replays</h3>
@@ -237,7 +237,7 @@
         </div>
         
         <div class="w3-col s2">
-            <a href="stats.html" target="_blank">
+            <a href="{{url_for('stats')}}" target="_blank">
                 <div class="w3-card-4">
                     <header>
                         <h3 class="w3-center w3-black w3-hover-dark-grey">The Stats</h3>
@@ -249,7 +249,7 @@
         </div>
         
         <div class="w3-col s2">
-            <a href="algorithm.html">
+            <a href="{{url_for('algorithm')}}">
                 <div class="w3-card-4">
                     <header>
                         <h3 class="w3-center w3-black w3-hover-dark-grey">The Algorithm</h3>
@@ -262,7 +262,7 @@
 
         
         <div class="w3-col s2">
-            <a href="design.html">
+            <a href="{{url_for('design')}}">
                 <div class="w3-card-4">
                     <header>
                         <h3 class="w3-center w3-black w3-hover-dark-grey">The Design</h3>
@@ -274,7 +274,7 @@
         </div>
 
         <div class="w3-col s2">
-            <a href="delivery.html" target="_blank">
+            <a href="{{url_for('delivery')}}" target="_blank">
                 <div class="w3-card-4">
                     <header>
                         <h3 class="w3-center w3-black w3-hover-dark-grey">The Delivery</h3>
@@ -286,7 +286,7 @@
         </div>
 
         <div class="w3-col s2">
-            <a href="report.html">
+            <a href="{{url_for('report')}}">
                 <div class="w3-card-4">
                     <header>
                         <h3 class="w3-center w3-black w3-hover-dark-grey">The Report</h3>

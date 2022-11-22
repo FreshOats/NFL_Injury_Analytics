@@ -28,6 +28,8 @@ def index():
          only_tr = SoupStrainer('tr')
          source = requests.get(url).text
          soup = BeautifulSoup(source, 'lxml', parse_only=only_tr)
+
+         # Find the number of lines to add to the table
          specific_element = soup.find_all('tr', limit=16)[1:]
  
 
@@ -41,5 +43,30 @@ def index():
    return render_template('index.html')
 
 
+@app.route("/replays/")
+def replays():
+   return render_template('replays.html')
+
+@app.route("/stats/")
+def stats():
+   return render_template('stats.html')
+
+@app.route("/algorithm/")
+def algorithm():
+   return render_template('algorithm.html')
+
+@app.route("/design/")
+def design():
+   return render_template('design.html')
+
+@app.route("/delivery/")
+def delivery():
+   return render_template('delivery.html')
+
+@app.route("/report/")
+def report():
+   return render_template('report.html')
+
+
 if __name__ == "__main__":
-   app.run()
+   app.run(debug=True)
