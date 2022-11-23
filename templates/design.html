@@ -27,7 +27,7 @@
     </header>
 
    
-    <!-- Side Dropdown Modals -->
+    <!-- Nav Bar -->
     <div class="w3-container">
         <div class="w3-row w3-large w3-light-grey">
             <div class="w3-col s3">
@@ -47,15 +47,77 @@
         </div>
     </div>
 
+    <!-- Start the Main Body part of the page -->
+
+    <div class="w3-row w3-container w3-row-padding">
+        <div class="w3-center w3-padding-16">
+            <span class="w3-xxlarge w3-bottombar w3-border-dark-grey w3-padding-16">The Data Sources</span>
+        </div>
+        <div class="w3-col s6">
+            <div class="w3-card-4">
+                <header>
+                    <h1 class="w3-center w3-black w3-hover-dark-grey w3-padding-16">Injury Analytics</h1>
+                    <p class="w3-center" style="text-align:center">Lower-body injury data was acquired from "NFL 1st and Future - Analytics"
+                        (Kaggle) 
+                    </p>
+                </header>
+                <center>
+                    <a href="https://www.kaggle.com/competitions/nfl-playing-surface-analytics/data">
+                        <img src="../static/images/analytics-fandf.png" alt="Kaggle Image 1" style="width:80%">
+                    </a>
+                </center>
+                <br>
+                <p class="w3-padding-8 w3-margin-left w3-margin-right" style="text-align:justify; text-indent: 40px;">The data from this competition provided 
+                    information on gross physiological injuries, such as foot, knee, and ankle injuries across 2 seasons.
+                    While the purpose of the competition was to assess the injuries with respect to the turf of the field, our 
+                    intention was to use these data to assess all parameters correlating with these types of injuries compared to the concussion
+                    data from the other datasets.</p>                
+                <p class="w3-margin-left w3-margin-right" style="text-align:justify; text-indent: 40px;">
+                    These data were stored in a PostgreSQL database, using SQL Alchemy to pull the data from each table for processing,
+                    with the exception of the tracking data. The size of the tracking data was prohibitively large for SQL Alchemy on a
+                    local server, with over 76 million rows. To import this data in the Python files, the data table was downloaded as a csv file from the
+                    SQL server into a folder labeled NFL_Turf, prior to being read into the Python file. The data were connected with the
+                    following Entity Relational Diagram (ERD).
+                </p>
+                <div class="w3-center w3-padding-16">
+                    <img src="../static/images/database1.png" alt="Injuries ERD" style="width:50%">
+                </div>
+            </div>
+        </div>
+        <div class="w3-col s6">
+            <div class="w3-card-4">
+                <header>
+                    <h1 class="w3-center w3-black w3-hover-dark-grey w3-padding-16">Concussion Analytics</h1>
+                    <p class="w3-center" style="text-align:center">Concussion data was acquired from "NFL Punt Analytics Competition"
+                        (Kaggle)
+                    </p>
+                </header>
+                <center>
+                    <a href="https://www.kaggle.com/competitions/NFL-Punt-Analytics-Competition/data">
+                        <img src="../static/images/puntanalytics_fandf.png" alt="Kaggle Image 2" style="width:80%">
+                    </a>
+                </center>
+                <br>
+                <p class="w3-padding-8 w3-margin-left w3-margin-right" style="text-align:justify; text-indent: 40px;">The data from this competition provided 
+                    information regarding concussions during punt plays across 2 seasons. Our goal was to use these data and investigate the 
+                    parameters in comparison with those from the lower-body injuries. We used 5 of the complete datasets
+                    available from the source. Upon storage in our database, 4 tables were merged using PG Admin and used to create a new
+                    table called punt_analytics. This table was imported into the Python files using SQL Alchemy as were done with the Injury tables. Also similar to the
+                    Injury data, the ngs table (tracking data) was too large to import using SQL Alchemy and again were downloaded locally and imported
+                    to Python using Pandas into a folder labeled NFL_Punt. Only the original data are represented in the ERD.
+                </p>     
+                <div class="w3-center w3-padding-16">
+                    <img src="../static/images/database2.jpg" alt="Injuries ERD" style="width:95%">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
     
-
-
-
-
-    
-  
+    <!-- Bottom of Content with Links to other pages -->
     <div class="w3-row-padding col-container">
         <div class="w3-col s2">
             <a href="{{url_for('replays')}}" target="_blank">

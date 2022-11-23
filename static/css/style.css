@@ -4,13 +4,19 @@ body {
     margin: 0;
 }
 
-p, h1, h2, h3, h4, li, th span { 
+h1, h2, h3, h4, li, th, span { 
     color: white;
     text-shadow: 2px 2px 4px black;
     font-family: "Cambria";
     text-decoration: none;
 }
 
+p {
+    font-family: 'Cambria';
+    text-decoration: none;
+    margin-left: 20px;
+    margin-right: 20px;
+}
 
 .button {
     border: none;
