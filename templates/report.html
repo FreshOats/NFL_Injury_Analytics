@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NFL Injury Analytics</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+
+    <!-- Stats Ticker -->
+    <header class="w3-container w3-theme w3-padding" id="myHeader">
+        <div class="w3-center">
+            <h1 class="w3-xxxlarge w3-animate-bottom">Injury Statistics - this will rotate through the findings</h1>
+         
+            
+
+
+        </div>
+    </header>
+
+   
+    <!-- Nav Bar -->
+    <div class="w3-container">
+        <div class="w3-row w3-large w3-light-grey">
+            <div class="w3-col s3">
+                <a href="{{url_for('index')}}" class="w3-button w3-block" style="font-weight:900;">The Main Page</a>            
+            </div>
+            <div class="w3-col s3">
+                <a href="{{url_for('replays')}}" class="w3-button w3-block" style="font-weight:900;" target="_blank">The Replays</a>
+            </div>
+            <div class="w3-col s3">
+                <a href="{{url_for('stats')}}" class="w3-button w3-block" style="font-weight:900;" target="_blank">The Stats</a>
+            </div>
+            <div class="w3-col s3">
+                <a href="{{url_for('algorithm')}}" class="w3-button w3-block" style="font-weight:900;">The Algorithm</a>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Start the Main Body part of the page -->
+    <div class="w3-row w3-container" id="database">
+        <div class="w3-center w3-padding-16">
+            <span id="nfl-injury-analysis" class="w3-xxlarge w3-bottombar w3-border-dark-grey w3-padding-16">The Full Report</span>
+                    <h3 class="w3-xlarge" style="margin-top:30px;"><em>by <b>Justin Papreck</b></h3>
+                        <h5>in collaboration with <b>Amy Gaffney, Izzy Irazoque, Kevin Ytturalde, Vincent Fan</em></b></h5>
+        </div>
+    </div>
+    <div class="w3-row w3-container">
+        <div class="w3-card-4">
+            <h1 class="w3-center w3-black w3-hover-dark-grey w3-padding-16">Contents</h1>
+            <ol>
+                <li>Topic and Reason</li>
+                <li>Data Source and Hypothesis </li>
+                <li>Database Structure and Utilization</li>
+                <li>Exploratory Data Analysis</li>
+                <li>Data Visualization via Tableau</li>
+                <li>Machine Learning Design</li>
+                <li>Machine Learning - Preliminary Findings</li>
+                <li>Machine Learning - Final Models</li>
+                <li>Results and Analysis</li>
+                <li>Project Showcase - Webpage Design</li>
+            </ol>
+        </div>
+    </div>
+    <div class="w3-row-padding col-container">
+        <div class="w3-col s6">
+            <div class="w3-card-4">
+                <h1 id="topic-and-reason" class="w3-center w3-black w3-hover-dark-grey w3-padding-16">Topic and Reason</h1>
+                    <p class="w3-padding-8 w3-margin-left w3-margin-right" style="text-align:justify; text-indent: 40px;">In recent years, more concern has grown over sustained injuries that impact the athletes lives long after their
+                        athletic careers end. The NFL is looking to identify what changes should be made to minimize the risk of player
+                        injury, while not completely altering America&#39;s favorite pastime. There are several types of injuries that are
+                        incurred - there are gross physiological injuries such as knee, foot, and ankle injuries, and there are also more
+                        subtle injuries such as concussions, which can have a much longer-lasting impact on the players, occasionally
+                        leading to personality changes and unfortanately, even suicide. It&#39;s clear that changes need to be made to
+                        address these concerns, but the conflicting view is that the NFL is a multi-billion dollar industry, generating a
+                        revenue of over 17 billion dollars in 2021 alone. While changes need to be made, they only impact a fraction of the
+                        players. In order to minimize the risk of all players, it&#39;s important for the NFL to maintain most of the
+                        features of the game if they can modify only certain aspects in order to better ensure the medical safety of their
+                        players.</p>
+                        <p class="w3-padding-8 w3-margin-left w3-margin-right" style="text-align:justify;">There are several questions we seek to answer: </p>
+                        <ol>
+                            <li>Are the lower-body injuries strictly associated with a combination or play, field type, weather, and
+                                temperature, or is the specific movement on the field required to precisely identify the occurrence of such
+                                injuries? </li>
+                            <li>Which features have the strongest correlation with both the lower-body injuries and the concussive injuries?
+                            </li>
+                            <li>Are there similar features with both the concussion injuries and lower-body injuries that could be addressed for
+                                overall safer play? </li>
+                            <li>Are there predictors to whether an injury is more or less likely to impair a player for over one month? </li>
+                            <li>Can we accurately and precisely predict which types of injuries are prone to occur given the set of features we
+                                have used to train a machine learning model? </li>
+                        </ol>
+                        <p class="w3-padding-8 w3-margin-left w3-margin-right" style="text-align:justify; text-indent: 40px;">To address the lower-body injuries, we applied Random Forest Machine Learning models and Neural Network models, as
+                            with these data we had a large control group of non-injured players. To address the concussive injuries, we
+                            ultimately used Principal Component Analysis (PCA) in conjunction with K-Means Clustering to determine the major
+                            groupings of the concussion injuries. Subsequently, we used a supervised Random Forest model to identify the primary
+                            features that separate the classifications. </p>
+            </div>
+        </div>
+        <div class="w3-col s6">
+            <div class="w3-card-4">
+                <h1 id="data-source-and-hypothesis" class="w3-center w3-black w3-hover-dark-grey w3-padding-16">Data Source and Hypothesis</h1>
+                    <p class="w3-padding-8 w3-margin-left w3-margin-right" style="text-align:justify;">The data sources are from two Kaggle Challenges: </p>
+                    <ul>
+                        <li><a href="https://www.kaggle.com/competitions/nfl-playing-surface-analytics/data">NFL 1st and Future -
+                                Analytics</a></li>
+                        <li><a href="https://www.kaggle.com/competitions/NFL-Punt-Analytics-Competition/data">NFL Punt Analytics
+                                Competition</a></li>
+                    </ul>
+                    <p class="w3-padding-8 w3-margin-left w3-margin-right" style="text-align:justify; text-indent: 40px;">The first sets of data provide information on gross physiological injuries such as foot and knee injuries, whereas
+                        the second sets of data provide information regarding concussive injuries. It is likely that the conditions for each
+                        of these types of injuries are different, so this will involve a multi-step analysis to assess the parameters that
+                        have the highest impact on each type of injury and the severity of the injuries. </p>
+                    <p class="w3-padding-8 w3-margin-left w3-margin-right" style="text-align:justify; text-indent: 40px;">We hypothesize that there is a relationship between the field conditions, player position, time during the season,
+                        duration of play during the game, location on the field, and the orientation the player is facing with respect to
+                        the direction of their movement (twist) that can predict the occurrence, type, and severity of lower body injury.
+                    </p>
+                    <p class="w3-padding-8 w3-margin-left w3-margin-right" style="text-align:justify; text-indent: 40px;">We also hypothesize that there is a relationship between the field conditions, player position, location, time within
+                        the season or game, the orientation the player is facing with respect to the direction of their movement (twist), as
+                        well as the impact of home/away games and the point distribution at the time of injury that correlates with the
+                        incidence of traumatic brain injuries. </p>
+                    <p class="w3-padding-8 w3-margin-left w3-margin-right" style="text-align:justify; text-indent: 40px;">We additionally anticipate that some of the features that lead to the lower-body injuries will overlap with those of
+                        the concussion injuries. </p>
+            </div>
+        </div>
+    </div>
+    
+    
+    <h1 id="database-structure-and-utilization" class="w3-center w3-black w3-hover-dark-grey w3-padding-16" style="text-align:center">Database Structure and Utilization</h1>
+   
+    <div class="w3-row-padding col-container">
+        <div class="w3-col s6">
+            <div class="w3-card-4">
+                <h4 id="the-injury-analytics-dataset-" class="w3-center w3-black w3-padding-16">The Injury Analytics Dataset</h4>
+                <p class="w3-padding-8 w3-margin-left w3-margin-right" style="text-align:justify; text-indent: 40px;">The Injury dataset was pulled directly from the SQL database using SQL Alchemy to pull the data from each table for
+                    processing, with the exception of the tracking data. The size of the tracking data was prohibitively large for
+                    sqlalchemy on a local server, with over 76 million rows. To import this data in the Python files, the data table was
+                    downloaded as a csv file from the sql server into a folder labeled NFL_Turf, prior to being read into the python
+                    file. The data were connected with the following Entity Relational Diagram (ERD).
+                    <br>
+                </p>
+                <div class="w3-center w3-padding-16"> 
+                    <img src="../static/images/database1.png" alt="Injuries ERD" style="width:50%" alt="Injury ERD"><br><br>
+                </div>
+            </div>
+        </div>
+        <div class="w3-col s6">
+            <div class="w3-card-4">
+                <h4 id="the-concussion-dataset-" class="w3-center w3-black w3-padding-16">The Concussion Dataset</h4>
+                <p class="w3-padding-8 w3-margin-left w3-margin-right" style="text-align:justify; text-indent: 40px;">For the Punt Analytics dataset, 4 tables were merged using PG Admin and used to create a new table called
+                    punt_analytics. This table was imported into the python files using SQL Alchemy as were done with the Injury tables.
+                    Also similar to the Injury data, the ngs table (tracking data) were too large to import using SQL Alchemy and again
+                    were downloaded locally and imported to python using pandas into a folder labeled NFL_Punt. Only the original data
+                    are represented in the ERD. </p>
+                <div class="w3-center w3-padding-16">
+                    <img src="../static/images/database2.jpg" style="width:95%" alt="Concussion ERD">
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h1 id="exploratory-data-analysis-and-data-cleaning" class="w3-center w3-black w3-hover-dark-grey w3-padding-16"
+        style="text-align:center">Exploratory Data Analysis and Data Cleaning</h1>
+    
+    <div class="w3-row-padding col-container">
+        <div class="w3-col s7">
+            <div class="w3-card-4">
+                <h4 id="the-injury-analytics-dataset-" class="w3-center w3-black w3-padding-16">Messy Injury Data</h4>
+                    <ul class="w3-margin-right">
+                        <li>There were 30 different types of stadiums listed<ul>
+                                <li>These were altered to either Indoor or Outdoor</li>
+                            </ul>
+                        </li>
+                        <li>There were 64 unique weather types<ul>
+                                <li>These were classified categorically as Clear, Indoor, Cloudy, Windy, Hazy/Fog, Rain, Snow</li>
+                                <li>These were futher classified dichotomously as Precipitation or No Precipitation</li>
+                            </ul>
+                        </li>
+                        <li>PlayType had 12 unique plays, but most were different identifications of the same plays<ul>
+                                <li>These were classified as Pass, Run, or Kick plays</li>
+                            </ul>
+                        </li>
+                        <li>RosterPosition and Position were listed as either words or abbreviations<ul>
+                                <li>All positions were converted to the appropriate NFL abbreviations</li>
+                                <li>Positions were converted to numerical position types for analysis</li>
+                            </ul>
+                        </li>
+                        <li>The minimum temperature was listed as -999<ul>
+                                <li>All temperatures for indoor fields listed as -999 were converted to the average indoor temperature</li>
+                                <li>All rowls with temperature labeled -999 for outdoor fields were removed from the dataset</li>
+                            </ul>
+                        </li>
+                        <li>PlayerGame represented the number game per player, but the weeks continued through the second year, while new
+                            players on the same teams starter their first season with a week 1<ul>
+                                <li>All PlayerGames for each of the two years started at game 1</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <br>
+            </div>
+        </div>
+
+    <div class="w3-col s5">
+        <div class="w3-card-4" style="text-align:justify;">
+            <h4 id="the-injury-analytics-dataset-" class="w3-center w3-black w3-padding-16">Messy Concussion Data</h4>
+                <ul class="w3-margin-right">
+                    <li>There were 24 different types of turf listed in the game_data table<ul>
+                            <li>This was converted to Natural or Synthetic</li>
+                            <li>All unknown were dropped</li>
+                        </ul>
+                    </li>
+                    <li>Weeks - the weeks started at 1 for each part of the season: preseason, regular season, and post season <ul>
+                            <li>The number of weeks of preseason was added to the regular season values</li>
+                            <li>The number of weeks of preseason and regular season was added to the post season values</li>
+                        </ul>
+                    </li>
+                    <li>Weather was similar to the Injury findings<ul>
+                            <li>Weather was categorizes as were the injury data</li>
+                        </ul>
+                    </li>
+                    <li>The GSISID was input as an integer value in all of the tables except for the ngs table, which made it difficult
+                        to set as a key<ul>
+                            <li>GSISID was converted to integer type to merge the ngs data with the other imported merged tables</li>
+                        </ul>
+                    </li>
+                    <li>Video_Footage tables were included in the original data, but not included in our databas or analysis</li>
+                </ul>
+                <br>
+        </div>
+    </div>
+    </div>
+    <div class="w3-row-padding col-container">
+    <div class="w3-col s5">
+        <div class="w3-card-4">
+            <h4 id="the-injury-analytics-dataset-" class="w3-center w3-black w3-padding-16">Cleaning The Messes</h4>
+            <p class="w3-padding-8 w3-margin-left w3-margin-right" style="text-align:justify;">This section refers to the python files used for data cleaning in the different analyses, found in the repository</p>
+            <ul class="w3-margin-right">
+                <li>ColumnCapitals.py: some data imported from SQL drops the capitalizations from the Headers; back to the original
+                    format</li>
+                <li>MergeCleaner.py: Merges and maps positions as numerical from the NGS in the Punt data</li>
+                <li>NGS_Sampler.py: Opens each of the NGS files, appends to the same csv, and creates a unique identifier, and
+                    samples the data before returning the df</li>
+                <li>Punt_SQL_Cleaner.py: Classifies turfs, stadiums, and weather, fixes the weeks, and separates the home score and
+                    score difference between the teams with data acquired from SQL Alchemy</li>
+                <li>Punt_Cleaner.py: Identical to the above file, only for the case when sqlalchemy isn&#39;t used and the 4 files
+                    must be opened and merged</li>
+                <li>InjuryCleaningFunctions.py - this contains a set of functions used for data cleaning<ul>
+                        <li>vis_data_cleaner produces outputs necessary for visualization using the appropriate functions</li>
+                        <li>ml_data_cleaner does the same as vis_data_cleaner, only changes all categorical features into numerical
+                            for machine learning</li>
+                    </ul>
+            </ul><br>
+        </div>
+    </div>
+    <div class="w3-col s7">
+        <div class="w3-card-4">
+            <h4 id="the-injury-analytics-dataset-" class="w3-center w3-black w3-padding-16">Cleaning The Messes</h4>
+            <ul class="w3-margin-right">
+                <li>Cleaning Subroutines: <ul>
+                        <li>stadium_coder: changes stadium to indoor/outdoor</li>
+                        <li>temperature_adjuster: fixes the -999 issue</li>
+                        <li>weather_coder: encodes the weather</li>
+                        <li>precipitation_coder: creates the precipitation column</li>
+                        <li>playerday_adjuster: changes the days the player has played adjusting for the year</li>
+                        <li>play_coder: categorizes plays as Rush, Pass, or Kick</li>
+                        <li>injury_coder: classifies injury types and adds &#39;NoInjury&#39; to the merged values and
+                            removes all na</li>
+                        <li>injury_duration_classifier: takes the 4 columns for duration and creates a single column with
+                            the 4 values</li>
+                        <li>injury_duration_coder: classifies injuries as either Severe (over 28 days) or not in a new
+                            columns &#39;SevereInjury</li>
+                    </ul>
+                </li>
+                <li>Visualization Subroutines:<ul>
+                        <li>vis_position_coder: changes RosterPositions to the NFL abbreviations</li>
+                        <li>vis_process_playlist_data: runs the appropriate Cleaning Subroutines from the playlist dataframe
+                        </li>
+                        <li>vis_process_injury_data: runs the appropriate Cleaning Subroutines from the injury dataframe
+                        </li>
+                    </ul>
+                </li>
+                <li>Machine Learning Subroutines:<ul>
+                        <li>suface_coder: maps the surfaces as 0 or 1 for &#39;SyntheticField&#39;</li>
+                        <li>ml_position_coder: changes positions from abbreviations or names to numerical </li>
+                        <li>ml_process_playlist_data: applies appropriate Cleaning Subroutines to the playlist dataframe
+                        </li>
+                        <li>ml_process_injury_data: applies appropriate Cleaning Subroutines to the injury data and drops
+                            future redundant columns prior to merge</li>
+                    </ul>
+                </li>
+            </ul><br>
+        </div>
+    </div>
+    </div>
+
+<h1 id="data-visualization" class="w3-center w3-black w3-hover-dark-grey w3-padding-16" style="text-align:center">Data Visualization</h1>
+<div class="w3-row-padding col-container">
+    <div class="w3-col s6">
+        <div class="w3-card-4">
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">Several key factors have been clearly demonstrated 
+                with visualizations produced both using Python and Tableau:</p>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">During the creation of visuals both in Tableau and using MatplotLib, we were able to work through the datasets in
+                search of any correlations that may lead to insight in factors associated with the injuries: </p>
+            <ul>
+                <li>
+                    <p>Which parts of the field were more prone to the different types of injuries?
+                        <br><br>
+                        <img src="https://user-images.githubusercontent.com/33167541/199360777-272c66fa-ea33-4387-9939-e6f07b6518ac.png" alt="End_of_play" style="width:95%">
+                        <br>
+                    </p>
+                </li>
+                <li>
+                    <p>Where on the field different certain defensive and offensive positions were sustaining more injuries and
+                        where they were least likely to occur?
+                        <br><br>
+                        <img src="https://user-images.githubusercontent.com/33167541/199360875-9f38905e-2923-40a8-87d1-687d4a4798cc.png"
+                            alt="Linebacker_Knee" style="width:95%">
+                        <br>
+                    </p>
+                </li>
+                <li>
+                    <p>What plays incurred which types of injuries?
+                        <br><br>
+                        <img src="https://user-images.githubusercontent.com/33167541/199360923-29c9bf65-2ff7-441a-bf90-ed3dd282d220.png"
+                            alt="Runningback_ankle" style="width:95%">
+                        <br>
+                </li>
+                <li>
+                    <p>What happened the moment before the injurious play ended? 
+                        <br><br>
+                        <img alt="FieldInjuryPlaysTab" src="https://user-images.githubusercontent.com/33167541/199361022-8a96f2de-ab6d-4130-a66b-9cfd2ecc3478.png"
+                            style="width:95%">
+                        <br>
+                    </p>
+                </li>
+            </ul>            
+        </div>
+    </div>
+    <div class="w3-col s6">
+        <div class="w3-card-4">
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">We noticed that concussions in punt plays alone vastly outnumbered the lower-body injuries in a 2 season
+                    period.
+            </p>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">The temperatures with the highest number of injuries were 68 and 70 degrees - though it should be noted
+                    that indoor fields are kept at these temperatures, so it may not be a valid predictor of injury.</li>
+            </p>
+            <br><center>
+                <img src="https://user-images.githubusercontent.com/33167541/199361377-3ee8b130-0c13-49f3-9dc4-48ca3d3b4cd1.png"
+                    alt="Injury_Temp" style="width:60%">
+            <br><br></center>
+            <ul>
+                <li>Foot injuries were the least frequently occurring injuries from the datasets</li>
+            </ul>
+            <br><center>
+            <img alt="InjuryChartsTab"
+                src="https://user-images.githubusercontent.com/33167541/199361450-ebce037a-ab18-4702-8b60-1924fae540e6.png"
+                style="width:60%">
+            <br></center>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">There was a correlation with severe injuries, resulting in over 4 week recovery and synthetic turf</p>
+            <br><center>
+            <img src="https://user-images.githubusercontent.com/33167541/199361494-c36dab8f-4042-4af1-ae88-4a3b2ebe623d.png"
+                alt="Field_Type_Duration" style="width:50%">
+            <br><br></center>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">Implementing the interactive models using Tableau allows a user to select from different parameters
+                (position, injury
+                type, etc.) and see the movement of a player on the field to give better depth in understanding of how the
+                injury
+                was sustained. </p>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">In the future, we would like to create a visualization to the the direction of movement and player
+                orientation with
+                vectors throughtout the play to show the player&#39;s path prior to concussion - as the twist was the
+                primary factor
+                that correlated with the learning model.</p>
+    
+        </div>
+    </div>
+</div>
+            
+            
+<h1 id="machine-learning-design" class="w3-center w3-black w3-hover-dark-grey w3-padding-16"
+    style="text-align:center">Machine Learning Design</h1>
+
+<p class="w3-margin-left w3-margin-right" style="text-align:justify;">The Machine Learning Design was broken up into two parts, as the Lower-Body Injury data and Concussion data presented
+    different aspects that only allowed for different types of machine learning analyses. The final Model Designs were
+    as follows: </p>
+<h3 id="lower-body-injury-analysis" class="w3-margin-left w3-margin-right">Lower-Body Injury Analysis</h3>
+<ol>
+    <li>Neural Network - Deep Learning with 2 hidden layers of 256 nodes and 128 nodes</li>
+</ol>
+<p class="w3-margin-left w3-margin-right" style="text-align:justify;">The lower-body injury analysis was a very unbalanced dataset containing a small number of injuries with a large set
+    of plays without injuries. The data without injuries functioned as a control group used for classification in a
+    supervised analysis. The initial model used Random Forests, as it produced a very high accuracy. However, the
+    precision was the more important consideration with the imbalanced data, and the neural network model provided a
+    much higher precision than did the ensemble learning. </p>
+<h3 id="concussion-analysis" class="w3-margin-left w3-margin-right">Concussion Analysis</h3>
+<ol>
+    <li>PCA feature extraction</li>
+    <li>K-Means Clustering (Unsupervised)</li>
+    <li>Random Forest Feature Analysis</li>
+</ol>
+<p class="w3-margin-left w3-margin-right" style="text-align:justify;">All instances of the concussion data were incidents with concussions, preventing us from using a supervised model.
+    The best results were achieved with a PCA feature extraction, reducing the features to 3 dimensions, more ideal for
+    visualization. Following the feature extraction, K-Means clustering was used to classify the data into the groups.
+    Both a dendogram and an elbow curve were used to determine the number of cluseters to use. Because of the ambiguity
+    incurred with the feature extraction, we used a Random Forest classifier to determine which features had the
+    strongest association with each of the outputs. </p>
+
+
+<center></center><div class="w3-row-padding col-container">
+    <div class="w3-col s12">
+        <div class="w3-card-4">
+            <h2 id="machine-learning-preliminary-findings" class="w3-center w3-black w3-padding-16">Preliminary Findings - Unsupervised Learning</h2>
+                <p class="w3-margin-left w3-margin-right" style="text-align:justify;">We initially used unsupervised learning to see what features would lead to clusters with the Injury data. K-Means
+                    Clustering was used to perform the unsupervised analysis, using a PCA feature extraction to group the features to 3,
+                    for the ability to create a 3D visualization. The initial model analyzed all of the data, including all plays
+                    without injuries and those with injuries. To determine the ideal number of k classifiers, we employed an elbow-curve
+                    analysis. There was a strong curve delineation at k=2, so this was performed and shown below. </p>
+                <div class="w3-row-padding col-container"><center>
+                    <img src="https://user-images.githubusercontent.com/33167541/195501892-e3600a8b-01d6-42db-8be4-74be9457a3d5.png"
+                        alt="Elbow_Curve1" style="width:40%">
+                    <img src="https://user-images.githubusercontent.com/33167541/195502047-22a06e8f-1a21-4127-afe1-b82cc0311cbc.png"
+                        alt="2-means-all-data" style="width:40%"><br></center>
+                </div>
+                <p class="w3-margin-left w3-margin-right" style="text-align:justify;">Unfortuantely, the injuries were not successfully classified, and the differences between the groups largely had to
+                    do with the number of games played.
+                    The next model removed all of the non-injury data from the dataset, to try to isolate the features that had the
+                    greatest influence on these data. The main joints occurred at k=3 and k=6. The grouping with k=3 left one group with
+                    very ambiguous correlations, so the results from the k=6 analysis are reported below. </p>
+                    <center>
+                <img src="https://user-images.githubusercontent.com/33167541/195502957-9b868884-267a-4d7c-804b-d6e4e8edfcf4.png"
+                        alt="6-means-injury-data" style="width:40%"><br><br><br>
+                </center>
+        </div>
+    </div>
+</div></center>
+<div class="w3-row-padding col-container">
+    <div class="w3-col s6">
+        <div class="w3-card-4">
+            <h2 id="machine-learning-preliminary-findings" class="w3-center w3-black w3-padding-16">Preliminary Findings - Supervised Learning</h2>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">The following files are a composite of those in the Preliminary Models, and are themselves contained in
+                Machine_Learning_Files:</p>
+            <ul>
+                <li>Preliminary_Injury_Supervised_Learning.ipynb</li>
+                <li>Preliminary_Injury_Unsupervised_Learning.ipynb</li>
+            </ul>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">These initially analyses did not incorporate tracking information. The goal was to determine whether the features not
+                including the tracking data could provide a model with high enough accuracy and precision. </p>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">Due to the nature of the Injury Dataset being extremely imbalanced, we used the Balanced Random Forest Classifier
+                from the imbalanced learn library. In preparing the data for processing, the positions were encoded in a single
+                column by numbers, as described above, however the plays were encoded with OneHotEncoder, giving us 3 columns for
+                each of the plays.</p>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">The original dataset contained 260,000 rows with only 77 injuries. Because of this large difference, we tried several
+                approaches, including Undersampling and SMOTEENN, but ultimately, we just split the data using train_test_split()
+                from the scikit learn library both with and without stratification.</p>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;"><strong>Determine whether an injury occurred</strong>
+                The original model achieved a 58% accuracy and worse precision. We further analyzed the feature importances. </p><br><br>
+            <center><img src="https://user-images.githubusercontent.com/33167541/199139830-d8ecd68f-b623-41be-92de-61376e859c32.png"
+                    alt="Prelim_RF" style="width:80%"><br><br><br></center>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">The next analyses utilized a Complement Naive Bayes analysis; this type of Naive Bayes is more suitable for extremely
+                imbalanced datasets. Similar to the Random Forest model, the results only provided a 58% accuracy. Likewise, an
+                EasyEnsemble Boosting algorithm was tested again with similar results. From these analyses, we concluded that
+                additional information would be necessary to further improve our models. The Random Forest and Complement Naive
+                Bayes are shown below:</p>
+            <center><img src="https://user-images.githubusercontent.com/33167541/199350852-23d4ee01-39bb-4f44-b925-35c97e8bccd6.png"
+                    alt="Naive_Bayes_Confusion" style="width:80%"><br><br></center>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">Futher development of the dataset included the spatial parameters that should gave more predictive capability,
+                indicating the great impact on the potential for injury. Using these data with random sampling the non-injury data
+                were reduced to achieve a 100:1 distribution from the 3000:1 distribution we started with. Once the spatial data
+                were added, this dataset expanded substantially, making a big impact on processing. Each of the Random Forest models
+                was able to predict with 99% accuracy, and few to no false negatives: </p>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;"><strong>Was there a severe injury?</strong>
+                <br><br>
+                <center><img src="https://user-images.githubusercontent.com/33167541/196870375-b4c37c10-d2be-4226-a7e6-269a436f49cb.png"
+                    alt="RF_IsSevere" style="width:80%">
+                <br><br></center>
+            </p>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;"><strong>What body part was injured?</strong>
+                <br><br>
+                <center><img src="https://user-images.githubusercontent.com/33167541/196870409-dc59d14f-e26d-4d09-a7a0-b78e7f48ac81.png"
+                    alt="RF_InjuryType" style="width:80%"></center>
+                <br><br>
+            </p>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;"><strong>How long was the player out?</strong>
+                <br><br>
+                <center><img src="https://user-images.githubusercontent.com/33167541/196870473-c93f4f22-a61b-40e5-82d9-7f2db68a9370.png"
+                    alt="RF_InjuryDuration" style="width:80%"></center>
+                <br><br>
+            </p>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;"> From the outputs of the Machine Learning models and the exploratory analysis, graphics for the dashboard will be
+                created using a combination of python generated plots and interactive features, which will be imbedded into a
+                webpage using JavaScript, HTML, and CSS. </p><br><br>
+        </div>
+    </div>
+    <div class="w3-col s6">
+        <div class="w3-card-4">
+            <h2 id="random-forest-adaptation" class="w3-center w3-black w3-padding-16">Random Forest Adaptation</h2>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">The following is the primary file used for this analysis:</p>
+            <ul>
+                <li>Injury_Supervised_Random_Forest.ipynb</li>
+            </ul>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;"><strong>Was the player injured?</strong>
+                The adaptations from the original model to the final models for the Injury Data was the addition and cleaning of the
+                tracking data. With the addition of the tracking information, the Balanced Random Forest Classifier with 10
+                estimators provided a 99.96% accuracy, a much higher accuracy than was achieved with the any of the models not
+                including the tracking data. With the addition of the tracking data, the number of rows increased to several
+                thousand. In addition to the 99.97% accuracy, this model yielded under 5 false negatives, and 145 false positives
+                from the dataset including 550,000 true negatives and 5500 true positives. </p>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">In the feature analysis, we confirmed that the strongest feature in the feature analysis was the number of days
+                played, closely followed by the temperature, and the time of the play during the game. Other stronger predictors
+                were the player&#39;s position and the location along the length of the field. </p>
+            <br><br>
+                <center><img src="https://user-images.githubusercontent.com/33167541/199139918-20a5c6de-9055-4a10-9be0-31d731e30dce.png"
+                    alt="RF_IsInjured" style="width:80%"></center>
+                <br><br>
+            
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;"><strong>Was the injury severe?</strong>
+                The same process as above was followed, yielding a 99.97% accuracy and a lower, 90.35% precision. </p>
+            <br><br>
+                <center><img src="https://user-images.githubusercontent.com/33167541/199140001-d34df505-999a-42b1-bde9-6f7ab8c77472.png"
+                    alt="RF_IsSevere" style="width:80%"></center>
+            <br><br>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;"><strong>What type of injury was predicted?</strong>
+                The overall accuracy of this model with 4 outputs was again 98.59%, but the precision started to really drop: </p>
+            <ul>
+                <li>Foot injury, 78.94% precision</li>
+                <li>Ankle injury, 42.61% precision</li>
+                <li>Knee injury, 27.25% precision</li>
+            </ul>
+            <br><br>
+                <center><img src="https://user-images.githubusercontent.com/33167541/199140053-1cbfb00d-22e5-47ab-bbdb-03d05758bcc4.png"
+                    alt="RF_InjuryType" style="width:80%"></center>
+            <br><br>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;"><strong>What was the predicted duration of injury?</strong>
+                The overall accuracy remains high at 99.77%, but the precision continues to drop: </p>
+            <ul>
+                <li>Under 1 day, 60.00% precision</li>
+                <li>Under 1 week, 35.67% precision</li>
+                <li>Under 4 weeks, 56.12% precision</li>
+                <li>Under 6 weeks, 63.75% precision</li>
+            </ul>
+        <br><br>
+                <center><img src="https://user-images.githubusercontent.com/33167541/199140090-656235a8-0c10-46ca-bc51-76e244cee6ba.png"
+                    alt="RF_InjuryDuration" style="width:80%"></center>
+                <br><br>
+        </div>
+    </div>
+    <div class="w3-col s6">
+        <div class="w3-card-4">
+            <h2 id="random-forest-adaptation" class="w3-center w3-black w3-padding-16">Final Random Forest Results Summarized</h2>
+            <p class="w3-margin-left w3-margin-right" style="text-align:justify;">The Random Forest Classifiers predicting multiple outcomes were more difficult to predict the accuracy and recall
+                specifically, and they were not possible to evaluate like this for the neural network model. These results were
+                summarized in the following table: </p>
+                <br><br>
+                <center><img src="https://user-images.githubusercontent.com/33167541/199140164-b025c02a-3616-4ccc-8c15-55eb2abdbf3f.png"
+                    alt="RandomForestResults" style="width:80%"></center>
+                <br><br>
+        </div>
+    </div>
+</div>
+    
+    <h1 id="machine-learning-working-models-" class="w3-margin-left w3-margin-right">Machine Learning - Working Models:</h1>
+    <h2 id="deep-learning-neural-network-analysis" class="w3-margin-left w3-margin-right">Deep Learning/Neural Network Analysis</h2>
+    <p>In the final model, there were some changes made from the preliminary models:</p>
+    <ol>
+        <li>The positive injury data were removed, a random sampler was used to reduce the non-injury data, reducing the
+            control data such that there would be a 99:1 balance of data. The injuries were then added back to the dataset
+        </li>
+        <li>When splitting the data in the test_train_split, the data was stratified based on the injury data</li>
+        <li>The data were scaled using StandardScaler before creating the neural network model</li>
+    </ol>
+    <p>Several different parameter configurations were tested with the neural networks, starting with the lowest complexity
+        - a single layer with increasing numbers of nodes - to higher complexity - two layers with increasing the numbers of
+        nodes in either layer. The final model used 256 nodes in the first hidden layer and 128 nodes in the second hidden
+        layer of a sequential model. The hidden layers each used Relu activation and a Sigmoid output. Compiling used a
+        binary crossentropy loss model because each of the outputs were binary outcomes, as opposed to a categorical
+        crossentropy model. Though there were categorical ouputs in some of the models, each of the outputs remained a
+        binary classification. The optimizer used was an adam optimizer. In order to compare the outcomes of this model with
+        the Random Forest model, the metrics tracked were accuracy, precision and recall. </p>
+    <p>The Tests Performed: </p>
+    <ul>
+        <li><strong>Was the player injured?</strong></li>
+        <li><strong>Was the injury severe?</strong></li>
+        <li><strong>What type of injury was predicted?</strong>, a 4-class output</li>
+        <li><strong>Was the injury a foot injury?</strong></li>
+        <li><strong>Was the injury an ankle injury?</strong></li>
+        <li><strong>Was the injury a knee injury?</strong></li>
+        <li><strong>What was the predicted duration of injury?</strong>, a 5-class output</li>
+    </ul>
+    <p>The Results:
+        <br>
+        <center><img src="https://user-images.githubusercontent.com/33167541/199140459-d237b0e0-b02d-4153-bbd0-7435cb6b9777.png"
+            alt="NeuralNetworkResults" style="width:80%"></center>
+    </p>
+    <h2 id="-br-"><br></h2>
+    <h2 id="unsupervised-concussion-analysis">Unsupervised Concussion Analysis</h2>
+    <p>Similar to the Injury Analysis, the tables were merged including the tracking data, creating a very large dataset. In
+        order to perform the clustering analysis, there are several ways to break the data into different clusters. The
+        first approach was using Agglomerative Clustering, which required a size reduction to create a dendogram. The
+        dendogram shows the highest break at two, followed by three clear clusters. </p>
+    <p>This analysis was performed with 3 clusters prior to breaking up into two sets using train_test_split for feature
+        classification. A Balanced Random Forest Classifier was used with 100 estimators to determine which features have
+        the highest correlation with the different classes. In this case, the highest correlation was the Twist, the
+        difference between the orientation of the player and the direction of movement. </p>
+    <p><br><br>
+        <center><img src="https://user-images.githubusercontent.com/33167541/199140744-346dc35f-a509-4bd3-9170-fb591dba6710.png"
+            alt="Dendogram_Concussion_Data" style="width:80%"></center>
+        <br><br>
+    </p>
+    <p>Following the Agglomerative Clustering, we used PCA data extraction to reduce the dimensions to 3 components. Testing
+        for the ideal number of clusters for K-Means analysis, we utilized an elbow curve, where there was a very distinct
+        bend at k=2. The K-Means clustering was performed with 2 clusters. The K-Means analysis was plotted using hvplot as
+        shown below:
+        <br>
+        <center><img src="https://user-images.githubusercontent.com/33167541/199140785-effcfeeb-eb92-4869-91ec-1af541682aca.png"
+            alt="Elbow_Curve1" style="width:80%">
+        <br>
+        <img src="https://user-images.githubusercontent.com/33167541/199140821-8ea6a78a-d6f4-401a-ae3f-8ef2570485b3.png"
+            alt="K-Means_Cluster" style="width:80%"></center>
+        <br>
+    </p>
+    <p>The highest predictor was, again, the Twist, with about 98% importance with the feature analysis. </p>
+    <hr>
+    <h1 id="results-and-analysis">Results and Analysis</h1>
+    <p>Considerations that were made during these analyses. Because of the nature of the analyses being of medical nature,
+        and furthermode the investigations were of the presence, identification and duration of injuries, the measure of
+        accuracy is not a particularly reliable measure. While accuracy is important, it only highlights how accuate the
+        models were in identifying the non-injured players. In fact, if the model had miscategorized all of the injured
+        players as non-injured, the model would still achieve a 99.97% accuracy based on the balanced accuracy report due to
+        the imbalance in the number of true positive and true negative values. The validation test results without the
+        positional data only contained 18 injured values, but 59098 non-injury plays for comparison.
+        In this study, the precision is a much better statistic to measure, as it looks at the True Positives compared to
+        all Positives labeled (True Positives + False Positives). Recall, on the other hand, is the ratio of True Positives
+        to True Measurements (True Positives + False Negatives). The prediction of a False Positive is much more desirable
+        than the prediction of a False Negative. A False Positive signifies that the model predicted an injury when no
+        injury occurred, whereas a False Negative predicts that no injury occurred, when one actually did. Our
+        interpretation of the the False Positives in the findings were that those plays could be classified as &quot;High
+        Risk&quot; plays: since the model predicted them as plays associated with injuries, all of the features that could
+        lead to an injury were there, but no player incurred an injury. A False Negative, on the other hand, would suggest
+        that the model is insufficient in its predictive capabilities. Therefore, our goal was to achieve a model with the
+        highest possible precision in the predicition of injury, injury types, and severity of the injury.
+        From our non-machine learning data analysis, we found </p>
+    <p>Our findings address the questions both within the datasets and between the datasets, answering the original
+        questions we posed: </p>
+    <ol>
+        <li>
+            <p>Are the lower-body injuries strictly associated with non-spatial features across the football field? </p>
+            <ul>
+                <li>The original supervised machine learning model had a very low accuracy, with the maximum accuracy of
+                    around 60% with the EasyEnsemble Boosting Algorithm. Worse than the accuracy, however, was that the
+                    precision in this model was only around 50%. To answer the initial question: no, the model without
+                    tracking data was insufficient in predicting lower-body injuries on the football field. </li>
+                <li>The modified supervised machine learning model incorporating the NGS tracking data achieved accuracies
+                    over 98% for all Random Forest Models, but had a broad range of Precision, ranging from 27% Precision
+                    (identifying Foot Injury) to 97% Precision (identifying the occurrence of any Injury). </li>
+                <li>The Final Neural Network model incorporating the NGS tracking data yielded over 99% accuracy for all
+                    tests, but had a much tighter range of precision with the lowest of 91.7% Precision (predicting whether
+                    an injury is Severe) to 99.9% Precision on multiple tests. </li>
+            </ul>
+        </li>
+        <li>
+            <p>Which features had the strongest correlations with the lower-body injuries and the concussive injuries?</p>
+            <ul>
+                <li>The features that maintained the highest influence across the presence of and prediction of the lower
+                    body injuries were the number of days played, temperature, play in the game, field location, and roster
+                    position. The higher number of days played indicates how far into the season the player has been
+                    playing. The play in the game what time during the game the injury occurred. Field location is
+                    specifically accross the length of the field, the position along the width of the field did not seem to
+                    have a major impact. And the temperature of the game. </li>
+                <li>In the concussion analysis, the primary feature associated with the injury were the twist of the player,
+                    a measure of the orientation the player was facing compared to the direction of movement. The other
+                    features, to a much lesser scale, were the location on the field, temperature, and player position.</li>
+            </ul>
+        </li>
+        <li>
+            <p>Are there similar features between the concussion and lower-body injury datasets that could be addressed for
+                overall safer play? </p>
+            <ul>
+                <li>The main indicators that overlapped as influencial features were the temperature and the distance across
+                    the field.</li>
+                <li>The locations on the field are not something that can be changed, as it seems to be a &#39;wrong place
+                    at the wrong time&#39; set of conditions that led to the injuries</li>
+                <li>The temperature issue can be addressed by updating the outdoor stadiums to retractable-rood dome
+                    stadiums, where the climate can be better controlled during parts of the year when conditions are more
+                    prone to injury.</li>
+                <li>Linebackers are nearly 3 times more likely to get a concussion than most other positions, making up 26%
+                    of all concussion injuries, followed by Cornerbacks at 16% and Wide Receivers at 10%. </li>
+                <li>Linebackers are similarly disproportionately higher in sustaining lower-body injuries, representing 27%
+                    of injuries, followed by Wide Receivers at 21% and Safeties at 14%. </li>
+                <li>Linebackers have the highest incidence of both concussions and lower body injuries, making this by far
+                    the highest risk position on the field (LB, OLB, MLB, ILB combined)</li>
+                <li>Wide Receivers have the highest incidence of offensive play injuries, and are likely due to different
+                    circumstances than the linebackers given the differences in the play styles of the positions</li>
+            </ul>
+        </li>
+    </ol>
+    <ol>
+        <li>Are there any predictors to whether an injury is more or less likely to impair a player for over four weeks?<ul>
+                <li>The biggest difference between the duration of the injuries was the type of turf the games were played
+                    on</li>
+                <li>Games played on natural fields yielded a higher number of injuries that lasted under 7 days and up to
+                    one month</li>
+                <li>The majority of all incurred injuries that lasted longer than 4 weeks, most of which were longer than 6
+                    weeks, were incurred on synthetic turf</li>
+            </ul>
+        </li>
+    </ol>
+    <p><br><br>
+        <center><img src="https://user-images.githubusercontent.com/33167541/199140861-bce26c8a-6c05-4a97-9570-e199a82f1128.png"
+            alt="Field_Type_Duration" style="width:80%"></center>
+    </p>
+    <p><br><br></p>
+    <ol>
+        <li>Can we accurately and precisely predict which types of injuries are prone to occur given the set of features we
+            have used to train a machine learning model? <ul>
+                <li>Yes, the Neural Network model was able to predict conditions leading to a Foot, Ankle, or Knee injury
+                    within 99.9% accuracy with 99.5% Precision</li>
+                <li>We also know that certain positions and plays are much more prone to incidence of each type of injury
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <h2 id="future-directions">Future Directions</h2>
+    <p>We would like to further assess the predictive capabilities of which exact conditions would both maximize and
+        minimize the chances of injury. Our current model can predict whether certain given parameters will predict high
+        risk or injury. To do this we will need to perform Regression analyses to determine what Temperatures parameters
+        lead to injuries, in order to best inform the NFL and players what precautions to take.</p>
+    <p>Limitations of our Neural Network model is the ambiguity associated, while it was easier to extract feature
+        importances from the Random Forest algorithm, we have not been able to directly extract the feature importances from
+        the Neural Network model. In future analyses, we would like to remove the lowest impact features found with the
+        Random Forests analyses to see whether we can maintain the high accuracy and precision with the deep learning model,
+        better reinforcing our understanding of the feature importance of the model. </p>
+    <p>Finally, our concussion analysis was unsupervised because of a lack of control data without sustained concussion
+        injuries. Although the data from the lower-body injuries and the concussion injuries were collected from two
+        different sets of years, we do have information from the lower-body dataset of many plays with the same known
+        parameters where no injuries were incurred. We would like to use these data to create a predictive model extracting
+        only the non-injury punt plays from the initial dataset to use to establish a Predictive Supervised model with a
+        more robust feature analysis for the concussion dataset. </p>
+    <hr>
+    <h1 id="project-showcase">Project Showcase</h1>
+    <p>To communicate our findings, we have designed a webpage using Javascript, CSS and HTML. Our interactive dashboard
+        enables the user to select injuries by parameters, such as field type, surface type, location, and duration of play
+        during the game. Our webpage allows the user to explore the different features of our exploratory study of injuries
+        in the NFL. The main interactive elements of our page are connected to the Tableau link, where the user can explore
+        the different charts, making the selections they desire to see, along with a description of the results that
+        we&#39;ve extrapolated from these findings.
+        The machine learning page presents the findings of the final models for the Injury Analysis as well as the
+        Concussion Analysis with images from the Unsupervised analyses as well as tables presenting the Accuracy, Precision,
+        and Recall from the Final Supervised models. The presentation page links to the Google Slides Presentaiton that
+        functioned as our Stakeholder Presentation. </p>
+    <div class='tableauPlaceholder' id='viz1666138420638' style='position: relative'><noscript><a href='#'><img
+                    alt='NFL Injury Data '
+                    src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;NF&#47;NFLInjuryData_16660655174710&#47;Story1&#47;1_rss.png'
+                    style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='' />
+            <param name='name' value='NFLInjuryData_16660655174710&#47;Story1' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image'
+                value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;NF&#47;NFLInjuryData_16660655174710&#47;Story1&#47;1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-US' />
+            <param name='filter' value='publish=yes' />
+        </object></div>
+    
+
+
+
+    
+    <!-- Bottom of Content with Links to other pages -->
+    <div class="w3-row-padding col-container">
+        <div class="w3-col s2">
+            <a href="{{url_for('replays')}}" target="_blank">
+                <div class="w3-card-4">
+                    <header>
+                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Replays</h3>
+                        <p class="w3-center w3-hover-dark-grey">Explore the Field by Position and Type of Injury</p>
+                    </header>
+                    <img src="../static/images/FieldInjuryPlaysTab.png" alt="Tableau Field" style="width:100%">
+                </div>
+            </a>
+        </div>
+        
+        <div class="w3-col s2">
+            <a href="{{url_for('stats')}}" target="_blank">
+                <div class="w3-card-4">
+                    <header>
+                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Stats</h3>
+                        <p class="w3-center w3-hover-dark-grey">Interact with Injury Analyses</p>
+                    </header>
+                    <img src="../static/images/Replays.png" alt="Bar Chart" style="width:100%">
+                </div>
+            </a>
+        </div>
+        
+        <div class="w3-col s2">
+            <a href="{{url_for('algorithm')}}">
+                <div class="w3-card-4">
+                    <header>
+                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Algorithm</h3>
+                        <p class="w3-center w3-hover-dark-grey">Examine the Machine Learning Models</p>
+                    </header>
+                    <img src="../static/images/K-Means.png" alt="ML Analysis" style="width:100%">
+                </div>
+            </a>
+        </div>
+
+        
+        <div class="w3-col s2">
+            <a href="{{url_for('design')}}">
+                <div class="w3-card-4">
+                    <header>
+                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Design</h3>
+                        <p class="w3-center w3-hover-dark-grey">Investigate the Data Sources and Organization</p>
+                    </header>
+                    <img src="../static/images/PuntAnalytics_DB.png" alt="Database Image" style="width:100%">
+                </div>
+            </a>
+        </div>
+
+        <div class="w3-col s2">
+            <a href="{{url_for('delivery')}}" target="_blank">
+                <div class="w3-card-4">
+                    <header>
+                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Delivery</h3>
+                        <p class="w3-center w3-hover-dark-grey">Walk through the Stakeholder Presentation</p>
+                    </header>
+                    <img src="../static/images/PresentationSlide1.png" alt="ML 3d Image" style="width:100%">
+                </div>
+            </a>
+        </div>
+
+        <div class="w3-col s2">
+            <a href="{{url_for('report')}}">
+                <div class="w3-card-4">
+                    <header>
+                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Report</h3>
+                        <p class="w3-center w3-hover-dark-grey">Review the Complete Project Analysis</p>
+                    </header>
+                    <img src="../static/images/database3.jpg" alt="Mathematical Slide" style="width:100%">
+                </div>
+            </a>
+        </div>
+    </div>
+
+   
+    
+
+    <!-- Footer -->
+    <footer class="w3-container w3-theme-dark">
+        <br>
+        <p class=" w3-col s4">Find the source code on  <a href="https://github.com/FreshOats" class="w3-btn w3-theme-light"
+                target="_blank"><span class="w3-xlarge">
+                    <i class="fa fa-github"></i></span> GitHub</a></p>
+        <a href="#" class="w3-button w3-black w3-right"><i class="fa fa-arrow-up w3-margin-right"></i>Top</a>
+    </footer>
+
+
+
+
+</body>    
+
+
+
+<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
+<script>
+// Get the modal
+// var modal1 = document.getElementById('id01');
+// var modal2 = document.getElementById('id02');
+// var modal3 = document.getElementById('id03');
+// var modal4 = document.getElementById('id04');
+
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function (event) {
+// if (event.target == modal1) {
+//     modal1.style.display = "none";
+// } else if (event.target == modal2) {
+//     modal2.style.display = "none";
+// } else if (event.target == modal3) {
+//     modal3.style.display = "none";
+// } else if (event.target == modal4) {
+//     modal4.style.display = "none";
+// }
+// }
+
+// // Side navigation
+// function w3_open() {
+//   var x = document.getElementById("mySidebar");
+//   x.style.width = "100%";
+//   x.style.fontSize = "40px";
+//   x.style.paddingTop = "10%";
+//   x.style.display = "block";
+// }
+// function w3_close() {
+//   document.getElementById("mySidebar").style.display = "none";
+// }
+
+
+// // Accordions
+// function myAccFunc(id) {
+//   var x = document.getElementById(id);
+//   if (x.className.indexOf("w3-show") == -1) {
+//     x.className += " w3-show";
+//   } else { 
+//     x.className = x.className.replace(" w3-show", "");
+//   }
+// }
+
+
+
+// // Progress Bars
+// function move() {
+//   var elem = document.getElementById("myBar");   
+//   var width = 5;
+//   var id = setInterval(frame, 10);
+//   function frame() {
+//     if (width == 100) {
+//       clearInterval(id);
+//     } else {
+//       width++; 
+//       elem.style.width = width + '%'; 
+//       elem.innerHTML = width * 1  + '%';
+//     }
+//   }
+// }
+
+// // Slideshow
+// var slideIndex = 1;
+// showDivs(slideIndex);
+
+// function plusDivs(n) {
+//     showDivs(slideIndex += n);
+// }
+
+// function currentDiv(n) {
+//     showDivs(slideIndex = n);
+// }
+
+// function showDivs(n) {
+//     var i;
+//     var x = document.getElementsByClassName("mySlides");
+//     var dots = document.getElementsByClassName("demodots");
+//     if (n > x.length) { slideIndex = 1 }
+//     if (n < 1) { slideIndex = x.length };
+//     for (i = 0; i < x.length; i++) {
+//         x[i].style.display = "none";
+//     }
+//     for (i = 0; i < dots.length; i++) {
+//         dots[i].className = dots[i].className.replace(" w3-white", "");
+//     }
+//     x[slideIndex - 1].style.display = "block";
+//     dots[slideIndex - 1].className += " w3-white";
+// }
+
+
+
+</script>
+
+</body>
+
+</html>
