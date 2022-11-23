@@ -209,8 +209,8 @@
             <div class="w3-third">
                 <div class="w3-card-4 w3-container" style="min-height:500px">               
                     <div class="col-md-8">
-                        <h3>15 Most Recent NFL Injuries</h3>
-                        <table class="table">
+                        <h3>15 Most Recent Injuries</h3>
+                        <table class="table table-striped text-nowrap">
                             <thead class="thead-dark">
                                 <!-- <th scope="col">Logo</th> -->
                                 <th scope="col">Team</th>
@@ -221,23 +221,15 @@
                             <tbody>
                                 {% for element in data %}
                                 <tr>
-                                    <th scope="col">{{element[0]}}</th>
-                                    <th scope="col">{{element[1]}}</th>
-                                    <th scope="col">{{element[2]}}</th>
-                                    <th scope="col">{{element[3]}}</th>
-                                    <th scope="col">{{element[4]}}</th>
+                                    <th class="font-weight-light" scope="col">{{element[0]}}</th>
+                                    <th class="font-weight-light" scope="col">{{element[1]}}</th>
+                                    <th class="font-weight-light" scope="col">{{element[2]}}</th>
+                                    <th class="font-weight-light" scope="col">{{element[3]}}</th>
+                                    <th class="font-weight-light" scope="col">{{element[4]}}</th>
                                 </tr>
                                 {% endfor %}
                             </tbody>
-
                         </table>
-                        <!-- <div class="bg-white shadow p-4 rounded results">
-                            {% if results %}
-                            {% for result in results %}
-                            <p> {{ result | striptags }} </p>
-                            {% endfor %}
-                            {% endif %}
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -378,7 +370,7 @@
 
     <!-- Footer -->
     <footer class="w3-container w3-theme-dark">
-        <p class=" w3-col s4">Find out source code on  <a href="https://github.com/FreshOats" class="w3-btn w3-theme-light"
+        <p class=" w3-col s4">Find the source code on  <a href="https://github.com/FreshOats" class="w3-btn w3-theme-light"
                 target="_blank"><span class="w3-xlarge">
                     <i class="fa fa-github"></i></span> GitHub</a></p>
         <a href="#" class="w3-button w3-black w3-right"><i class="fa fa-arrow-up w3-margin-right"></i>Top</a>
