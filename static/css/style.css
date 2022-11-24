@@ -1,18 +1,18 @@
 body {
-    font-family: "Cambria";
+    font-family:'calibri';
     height: 100%;
     margin: 0;
 }
 
-h1, h2, h3, h4, li, th, span { 
-    color: white;
-    text-shadow: 2px 2px 4px black;
-    font-family: "Cambria";
+h1, h2, h3, h4, th, span { 
+    color: black;
+    text-shadow: 2px 2px 4px #013369;
+    font-family: 'calibri';
     text-decoration: none;
 }
 
 p {
-    font-family: 'Cambria';
+    font-family: 'calibri';
     text-decoration: none;
     margin-left: 20px;
     margin-right: 20px;
@@ -30,8 +30,8 @@ p {
 
 .button1 {
     background-color: white;
-    color: black;
-    border: 2px solid black;
+    color: #013369;
+    border: 2px solid #013369;
 }
 
 .button1:hover {
@@ -48,6 +48,8 @@ a:visited {
 }
 
 a:hover {
+        background-color: black;
+        color: #013369;
         text-decoration: none;
 }
 
@@ -55,15 +57,15 @@ a:active {
         text-decoration: none;
 }
 
-.mystyle {
+/* .mystyle {
     width: 100%;
     padding: 25px;
     background-color: coral;
     color: white;
     font-size: 25px;
-}
+} */
 
-.col-container {
+/* .col-container {
     display: table;
     width: 60%;
     height: 100%;
@@ -72,7 +74,7 @@ a:active {
     display: table-cell;
     padding: 16px;
     height: 100%;
-}
+} */
 
 /* 
 h1 {

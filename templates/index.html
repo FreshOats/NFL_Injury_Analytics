@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" type='text/css' href="{{url_for('static', filename='css/style.css')}}">
 </head>
 
 <body>
@@ -29,15 +29,15 @@
    
     <!-- Side Dropdown Modals -->
     <div class="w3-container">
-        <div class="w3-row w3-large w3-light-grey">
+        <div class="w3-row w3-large">
             <div class="w3-col s1">
                 <!-- <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-light-gray"></i> -->
                 <div class="w3-dropdown-hover">
-                    <button class="w3-button w3-white">
+                    <button class="w3-button w3-white w3-hover-black">
                         <i class="fa fa-bars"></i>
                     </button>
                     <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-                        <button class="w3-button w3-block" onclick="document.getElementById('id01').style.display='block'"
+                        <button class="w3-button w3-block w3-hover-black" onclick="document.getElementById('id01').style.display='block'"
                             style="font-weight:900;">The Project</button>
                         <div id="id01" class="w3-modal">
                             <div class="w3-modal-content w3-card-4 w3-animate-top">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div>
-                            <button class="w3-button w3-block" onclick="document.getElementById('id02').style.display='block'"
+                            <button class="w3-button w3-block w3-hover-black" onclick="document.getElementById('id02').style.display='block'"
                                 style="font-weight:900;">The Process</button>
                             <div id="id02" class="w3-modal">
                                 <div class="w3-modal-content w3-card-4 w3-animate-top">
@@ -79,7 +79,7 @@
                         
                         
                         <div>
-                            <button class="w3-button w3-block" onclick="document.getElementById('id03').style.display='block'"
+                            <button class="w3-button w3-block w3-hover-black" onclick="document.getElementById('id03').style.display='block'"
                                 style="font-weight:900;">The Features</button>
                             <div id="id03" class="w3-modal">
                                 <div class="w3-modal-content w3-card-4 w3-animate-top">
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         <div>                         
-                            <button class="w3-button w3-block" onclick="document.getElementById('id04').style.display='block'"
+                            <button class="w3-button w3-block w3-hover-black" onclick="document.getElementById('id04').style.display='block'"
                                 style="font-weight:900;">The Reports</button>
                             <div id="id04" class="w3-modal">
                                 
@@ -123,13 +123,13 @@
             
 
             <div class="w3-col s3">
-                <a href="{{url_for('replays')}}" class="w3-button w3-block" style="font-weight:900;" target="_blank">The Replays</a>
+                <a href="{{url_for('replays')}}" class="w3-button w3-block w3-hover-black" style="font-weight:900;" target="_blank">The Replays</a>
             </div>
             <div class="w3-col s3">
-                <a href="{{url_for('stats')}}" class="w3-button w3-block" style="font-weight:900;" target="_blank">The Stats</a>
+                <a href="{{url_for('stats')}}" class="w3-button w3-block w3-hover-black" style="font-weight:900;" target="_blank">The Stats</a>
             </div>
             <div class="w3-col s3">
-                <a href="{{url_for('algorithm')}}" class="w3-button w3-block" style="font-weight:900;">The Algorithm</a>
+                <a href="{{url_for('algorithm')}}" class="w3-button w3-block w3-hover-black" style="font-weight:900;">The Algorithm</a>
             </div>
 
 
@@ -243,8 +243,8 @@
             <a href="{{url_for('replays')}}" target="_blank">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Replays</h3>
-                        <p class="w3-center w3-hover-dark-grey">Explore the Field by Position and Type of Injury</p>
+                        <h3 class="w3-center w3-black w3-hover-white">The Replays</h3>
+                        <p class="w3-center">Explore the Field by Position and Type of Injury</p>
                     </header>
                     <img src="static/images/FieldInjuryPlaysTab.png" alt="Tableau Field" style="width:100%">
                 </div>
@@ -255,8 +255,8 @@
             <a href="{{url_for('stats')}}" target="_blank">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Stats</h3>
-                        <p class="w3-center w3-hover-dark-grey">Interact with Injury Analyses</p>
+                        <h3 class="w3-center w3-black w3-hover-white">The Stats</h3>
+                        <p class="w3-center">Interact with Injury Analyses</p>
                     </header>
                     <img src="static/images/Replays.png" alt="Bar Chart" style="width:100%">
                 </div>
@@ -267,8 +267,8 @@
             <a href="{{url_for('algorithm')}}">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Algorithm</h3>
-                        <p class="w3-center w3-hover-dark-grey">Examine the Machine Learning Models</p>
+                        <h3 class="w3-center w3-black w3-hover-white">The Algorithm</h3>
+                        <p class="w3-center">Examine the Machine Learning Models</p>
                     </header>
                     <img src="static/images/K-Means.png" alt="ML Analysis" style="width:100%">
                 </div>
@@ -280,8 +280,8 @@
             <a href="{{url_for('design')}}">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Design</h3>
-                        <p class="w3-center w3-hover-dark-grey">Investigate the Data Sources and Organization</p>
+                        <h3 class="w3-center w3-black w3-hover-white">The Design</h3>
+                        <p class="w3-center">Investigate the Data Sources and Organization</p>
                     </header>
                     <img src="static/images/PuntAnalytics_DB.png" alt="Database Image" style="width:100%">
                 </div>
@@ -292,8 +292,8 @@
             <a href="{{url_for('delivery')}}" target="_blank">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Delivery</h3>
-                        <p class="w3-center w3-hover-dark-grey">Walk through the Stakeholder Presentation</p>
+                        <h3 class="w3-center w3-black w3-hover-white">The Delivery</h3>
+                        <p class="w3-center">Walk through the Stakeholder Presentation</p>
                     </header>
                     <img src="static/images/PresentationSlide1.png" alt="ML 3d Image" style="width:100%">
                 </div>
@@ -304,8 +304,8 @@
             <a href="{{url_for('report')}}">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Report</h3>
-                        <p class="w3-center w3-hover-dark-grey">Review the Complete Project Analysis</p>
+                        <h3 class="w3-center w3-black w3-hover-white">The Report</h3>
+                        <p class="w3-center">Review the Complete Project Analysis</p>
                     </header>
                     <img src="static/images/database3.jpg" alt="Mathematical Slide" style="width:100%">
                 </div>
