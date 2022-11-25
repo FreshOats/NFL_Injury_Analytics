@@ -4,7 +4,7 @@ body {
     margin: 0;
 }
 
-h1, h2, h3, h4, th, span { 
+h1, h2, h3, h4, span { 
     color: black;
     text-shadow: 2px 2px 4px #013369;
     font-family: 'calibri';
@@ -18,26 +18,70 @@ p {
     margin-right: 20px;
 }
 
-.button {
-    border: none;
-    color:blanchedalmond;
-    text-align: center;
-    display:inline-block;
-    font-size: 16px;
+.blue-row {
+    background-color: #013369;
+    padding: 20px;
+}
+
+.modal-header {
+    background-color: #013369;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    text-align: left;
     transition-duration: 0.4s;
     cursor: pointer;
 }
 
-.button1 {
-    background-color: white;
-    color: #013369;
-    border: 2px solid #013369;
+.h3-modal {
+    background-color: #013369;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
+.table-header {
+    background-color: #013369;
+    color: white;
+    text-align: left;
+    text-shadow: 1px 1px 2px black;
+}
+
+.button {
+    border: none;
+    background-color: #013369;
+    color:white;
+    text-shadow: 1px 1px 2px black;
+    text-align: center;
+    display:inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button:hover {
+    color: white;
+    background-color: #013369;
+    text-decoration-color: white;
+    
 }
 
 .button1:hover {
+    color: white;
+    background-color: #013369;
+    text-decoration: none;
+}
+
+.button1 {
+    border: none;
     background-color: #013369;
     color: white;
+    cursor: pointer;
+    padding-right: 8px;
+    text-decoration: none;
 }
+
+.arrow-hover:hover {
+    color: #D50A0A
+}
+
 
 a:link {
     text-decoration: none;
@@ -48,9 +92,9 @@ a:visited {
 }
 
 a:hover {
-        background-color: black;
-        color: #013369;
-        text-decoration: none;
+        text-decoration: underline;
+        text-decoration-color: white;
+
 }
 
 a:active {
