@@ -2,48 +2,51 @@
 <html>
 
 <head>
-    <title>NFL Injury Analysis</title>
+    <title>NFL Injury Analytics</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
 </head>
 
 <body>
 
     <!-- Stats Ticker -->
-    <header class="w3-container w3-theme w3-padding" id="myHeader">
+    <header class="w3-container w3-padding" id="myHeader">
         <div class="w3-center">
             <h1 class="w3-xxxlarge w3-animate-bottom">Injury Statistics - this will rotate through the findings</h1>
-         
-            
+
+
 
 
         </div>
     </header>
 
    
-    <!-- Nav Bar -->
+    <!-- Top Bar -->
     <div class="w3-container">
-        <div class="w3-row w3-large w3-light-grey">
-            <div class="w3-col s3">
-                <a href="{{url_for('index')}}" class="w3-button w3-block" style="font-weight:900;">The Main Page</a>            
+        <div class="w3-row w3-large blue-row">
+            <div class="w3-col s1">
+                <img src="https://static.www.nfl.com/image/upload/v1554321393/league/nvfr7ogywskqrfaiu38m.svg"
+                    style="height:32px;">
+            </div>
+            <div class="w3-col s2">
+                <a href="{{url_for('index')}}" class="button w3-block" style="font-weight:900;">The Main Page</a>
             </div>
             <div class="w3-col s3">
-                <a href="{{url_for('replays')}}" class="w3-button w3-block" style="font-weight:900;" target="_blank">The Replays</a>
+                <a href="{{url_for('replays')}}" class="button w3-block " style="font-weight:900;" target="_blank">The
+                    Replays</a>
             </div>
             <div class="w3-col s3">
-                <a href="{{url_for('stats')}}" class="w3-button w3-block" style="font-weight:900;" target="_blank">The Stats</a>
+                <a href="{{url_for('stats')}}" class="button w3-block " style="font-weight:900;" target="_blank">The
+                    Stats</a>
             </div>
             <div class="w3-col s3">
-                <a href="{{url_for('algorithm')}}" class="w3-button w3-block" style="font-weight:900;">The Algorithm</a>
+                <a href="{{url_for('algorithm')}}" class="button w3-block" style="font-weight:900;">The Algorithm</a>
             </div>
-
-
         </div>
     </div>
 
@@ -56,7 +59,7 @@
         <div class="w3-col s6">
             <div class="w3-card-4">
                 <header>
-                    <h1 class="w3-center w3-black w3-hover-dark-grey w3-padding-16">Injury Analytics</h1>
+                    <h1 class="toenail w3-padding-16">Injury Analytics</h1>
                     <p class="w3-center" style="text-align:center">Lower-body injury data was acquired from "NFL 1st and Future - Analytics"
                         (Kaggle) 
                     </p>
@@ -87,7 +90,7 @@
         <div class="w3-col s6">
             <div class="w3-card-4">
                 <header>
-                    <h1 class="w3-center w3-black w3-hover-dark-grey w3-padding-16">Concussion Analytics</h1>
+                    <h1 class="toenail w3-padding-16">Concussion Analytics</h1>
                     <p class="w3-center" style="text-align:center">Concussion data was acquired from "NFL Punt Analytics Competition"
                         (Kaggle)
                     </p>
@@ -117,75 +120,75 @@
 
 
     
-    <!-- Bottom of Content with Links to other pages -->
+    <!-- Bottom Toenails -->
     <div class="w3-row-padding col-container">
         <div class="w3-col s2">
             <a href="{{url_for('replays')}}" target="_blank">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Replays</h3>
-                        <p class="w3-center w3-hover-dark-grey">Explore the Field by Position and Type of Injury</p>
+                        <h3 class="toenail">The Replays</h3>
+                        <p class="w3-center">Explore the Field by Position and Type of Injury</p>
                     </header>
                     <img src="../static/images/FieldInjuryPlaysTab.png" alt="Tableau Field" style="width:100%">
                 </div>
             </a>
         </div>
-        
+    
         <div class="w3-col s2">
             <a href="{{url_for('stats')}}" target="_blank">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Stats</h3>
-                        <p class="w3-center w3-hover-dark-grey">Interact with Injury Analyses</p>
+                        <h3 class="toenail">The Stats</h3>
+                        <p class="w3-center">Interact with Injury Analyses</p>
                     </header>
                     <img src="../static/images/Replays.png" alt="Bar Chart" style="width:100%">
                 </div>
             </a>
         </div>
-        
+    
         <div class="w3-col s2">
             <a href="{{url_for('algorithm')}}">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Algorithm</h3>
-                        <p class="w3-center w3-hover-dark-grey">Examine the Machine Learning Models</p>
+                        <h3 class="toenail">The Algorithm</h3>
+                        <p class="w3-center">Examine the Machine Learning Models</p>
                     </header>
                     <img src="../static/images/K-Means.png" alt="ML Analysis" style="width:100%">
                 </div>
             </a>
         </div>
-
-        
+    
+    
         <div class="w3-col s2">
             <a href="{{url_for('design')}}">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Design</h3>
-                        <p class="w3-center w3-hover-dark-grey">Investigate the Data Sources and Organization</p>
+                        <h3 class="toenail">The Design</h3>
+                        <p class="w3-center">Investigate the Data Sources and Organization</p>
                     </header>
                     <img src="../static/images/PuntAnalytics_DB.png" alt="Database Image" style="width:100%">
                 </div>
             </a>
         </div>
-
+    
         <div class="w3-col s2">
             <a href="{{url_for('delivery')}}" target="_blank">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Delivery</h3>
-                        <p class="w3-center w3-hover-dark-grey">Walk through the Stakeholder Presentation</p>
+                        <h3 class="toenail">The Delivery</h3>
+                        <p class="w3-center">Walk through the Stakeholder Presentation</p>
                     </header>
                     <img src="../static/images/PresentationSlide1.png" alt="ML 3d Image" style="width:100%">
                 </div>
             </a>
         </div>
-
+    
         <div class="w3-col s2">
             <a href="{{url_for('report')}}">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-dark-grey">The Report</h3>
-                        <p class="w3-center w3-hover-dark-grey">Review the Complete Project Analysis</p>
+                        <h3 class="toenail">The Report</h3>
+                        <p class="w3-center">Review the Complete Project Analysis</p>
                     </header>
                     <img src="../static/images/database3.jpg" alt="Mathematical Slide" style="width:100%">
                 </div>
@@ -197,12 +200,12 @@
     
 
     <!-- Footer -->
-    <footer class="w3-container w3-theme-dark">
-        <br>
-        <p class=" w3-col s4">Find the source code on  <a href="https://github.com/FreshOats" class="w3-btn w3-theme-light"
-                target="_blank"><span class="w3-xlarge">
-                    <i class="fa fa-github"></i></span> GitHub</a></p>
-        <a href="#" class="w3-button w3-black w3-right"><i class="fa fa-arrow-up w3-margin-right"></i>Top</a>
+    <footer class="w3-container blue-row"><NOBR>
+        <p class="w3-large w3-col s4">Find the source code on
+            <a href="https://github.com/FreshOats" class="button2" target="_blank"><span class="w3-xlarge">
+                    <i class="fa fa-github icon layered"></i></span>GitHub</a>
+        </p></NOBR>
+        <a href="#" class="button w3-right"><i class="fa fa-arrow-up w3-margin-right"></i>Top</a>
     </footer>
 
 

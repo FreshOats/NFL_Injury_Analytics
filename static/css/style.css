@@ -14,6 +14,7 @@ p {
     text-decoration: none;
     margin-left: 20px;
     margin-right: 20px;
+    text-align: justify;
 }
 
 .blue-row {
@@ -133,7 +134,23 @@ a:hover {
     color: black;
 }
 
+.contents {
+    color:#013369;
+}
 
+.contents:hover {
+    color: #D50A0A;
+}
+
+.to-top {
+    color: #013369;
+    background-color:transparent;
+}
+
+.to-top:hover {
+    color: #D50A0A;
+    background-color: transparent;
+}
 
 /* 
 < !-- Official NFL Colors -->

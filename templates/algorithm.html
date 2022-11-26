@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" type='text/css' href="{{url_for('static', filename='css/style.css')}}">
 </head>
@@ -55,18 +54,20 @@
             <h3 class="w3-xlarge" style="margin-top:30px;"><b><em>Algorithms and methods used in the injury analyses</b></em></h3>
         </div>
     </div>
-    <div class="w3-row w3-container">
+
+    <!-- Containers -->
+    <div class="w3-row-padding w3-container">
         <div class="w3-col s6">
             <div class="w3-card-4">
-                <h1 id="topic-and-reason" class="w3-center w3-black w3-hover-white w3-padding-16">Lower-Body Injury Models</h1>
-                <h3>The Data</h3>
+                <h1 id="topic-and-reason" class="toenail w3-padding-16">Lower-Body Injury Models</h1>
+                <h3 class="w3-margin-left w3-margin-right">The Injury Data</h3>
                 <p> The lower-body injury analysis was a very unbalanced dataset containing a small number of 
                     injuries with a large set of plays without injuries. The data without injuries functioned as a control group used 
                     for classification in a supervised analysis. The initial model used Random Forests, as it produced a very high
                     accuracy. However, the precision was the more important consideration with the imbalanced data, and the neural
                     network model provided a much higher precision than did the ensemble learning.</p>
                 <br><br>
-                <h3>The Learning Models:</h3>
+                <h3 class="w3-margin-left w3-margin-right">The Learning Models:</h3>
                 <ul>
                     <li>Random Forest</li>
                     <li>Neural Network - Deep Learning</li>
@@ -75,8 +76,8 @@
         </div>
         <div class="w3-col s6">
             <div class="w3-card-4">
-                <h1 id="topic-and-reason" class="w3-center w3-black w3-hover-white w3-padding-16">Concussion Models</h1>
-                <h3>The Data</h3>
+                <h1 id="topic-and-reason" class="toenail w3-padding-16">Concussion Models</h1>
+                <h3 class="w3-margin-left w3-margin-right">The Concussion Data</h3>
                 <p> All instances of the concussion data were incidents with concussions, preventing us from using a supervised 
                     model. The best results were achieved with a PCA feature extraction, reducing the features to 3 dimensions,
                     more ideal for visualization. Following the feature extraction, K-Means clustering was used to classify the
@@ -84,7 +85,7 @@
                     use. Because of the ambiguity incurred with the feature extraction, we used a Random Forest classifier to
                     determine which features had the strongest association with each of the outputs.</p>
                 <br><br>
-                <h3>The Learning Models:</h3>
+                <h3 class="w3-margin-left w3-margin-right">The Learning Models:</h3>
                 <ul>
                     <li>PCA Feature Extraction</li>
                     <li>K-Means Clustering</li>
@@ -94,16 +95,16 @@
         </div>
     </div>
 
-    <h1 id="database-structure-and-utilization" class="w3-center w3-black w3-hover-white w3-padding-16" style="text-align:center">Predicting Lower-Body Injuries
-            <a href="#" class="w3-button w3-hover-white w3-black w3-right"><i class="fa fa-arrow-up w3-margin-right"></i></a></h1>
+    <h1 id="database-structure-and-utilization" class="toenail w3-padding-16" style="text-align:center">Predicting Lower-Body Injuries
+            <a href="#" class="to-top w3-right"><i class="fa fa-arrow-up w3-margin-right"></i></a></h1>
 
 
-    <div class="w3-row w3-container">
+    <div class="w3-row-padding w3-container">
         <div class="w3-col s6">
             <div class="w3-card-4">
-                <h2 id="topic-and-reason" class="w3-center w3-black w3-hover-white w3-padding-16">Preliminary Ensemble Models
+                <h2 id="topic-and-reason" class="toenail w3-padding-16">Preliminary Ensemble Models
                 </h2>
-                <h3>Using a Balanced Random Forest Classifier</h3>
+                <h3 class="w3-margin-left w3-margin-right">Using a Balanced Random Forest Classifier</h3>
                 <p> The goal with the initial analysis was to determine whether we could predict whether an injury occurred based 
                     on all feautures, such as temperature, turf, weather, etc., excluding the tracking data from the individual players.
                 </p>
@@ -126,8 +127,8 @@
         </div>
         <div class="w3-col s6">
             <div class="w3-card-4">
-                <h2 id="topic-and-reason" class="w3-center w3-black w3-hover-white w3-padding-16">Preliminary Alternative Models</h2>
-                <h3>Naive Bayes Classifiers and Sampling Applications</h3>
+                <h2 id="topic-and-reason" class="toenail w3-padding-16">Preliminary Alternative Models</h2>
+                <h3 class="w3-margin-left w3-margin-right">Naive Bayes Classifiers and Sampling Applications</h3>
                 <p>
                     The original dataset contained 260,000 rows with only 77 injuries. Because of this large difference,
                     we tried several approaches, including Undersampling and SMOTEENN, but ultimately, we just split the
@@ -148,14 +149,14 @@
         </div>
     </div>
 
-        <h2 id="topic-and-reason" class="w3-center w3-black w3-hover-white w3-padding-16">Improved Ensemble
-            Models
+        <h2 id="topic-and-reason" class="toenail w3-padding-16">Improved Ensemble
+            Models<a href="#" class="to-top w3-right"><i class="fa fa-arrow-up w3-margin-right"></i></a>
         </h2>
 
-        <div class="w3-row w3-container">
+        <div class="w3-row-padding w3-container">
             <div class="w3-col s6">
                 <div class="w3-card-4">
-                    <h3>Was there an injury?</h3>
+                    <h3 class="w3-margin-left w3-margin-right">Was there an injury?</h3>
                     <p>
                         Futher development of the dataset included the spatial parameters that should gave more predictive
                         capability, indicating the great impact on the potential for injury. Using these data with random
@@ -186,7 +187,7 @@
                         the length of the field.
                     </p><br>
 
-                    <h3>Was there a severe injury?</h3>
+                    <h3 class="w3-margin-left w3-margin-right">Was there a severe injury?</h3>
                     <center>
                         <img src="../static/images/RF_IsSevere.png" alt="Confusion Matrix" style="width:60%">
                     </center><br>
@@ -213,7 +214,7 @@
             </div>
             <div class="w3-col s6">
                 <div class="w3-card-4">
-                    <h3>What was the duration of the injury?</h3>
+                    <h3 class="w3-margin-left w3-margin-right">What was the duration of the injury?</h3>
                     <center>
                         <img src="../static/images/RF_InjuryDuration.png" alt="Confusion Matrix" style="width:60%">
                     </center><br>
@@ -228,7 +229,7 @@
                         </ul>
                     </p><br>
 
-                    <h3>Final Random Forest Results Summarized</h3>
+                    <h3 class="w3-margin-left w3-margin-right">Final Random Forest Results Summarized</h3>
                     <p>
                         The Random Forest Classifiers predicting multiple outcomes were more difficult to predict
                         the accuracy and recall specifically, and they were not possible to evaluate like this for
@@ -316,8 +317,8 @@
 
         <div class="w3-col s6">
             <div class="w3-card-4">
-                <h2 id="topic-and-reason" class="w3-center w3-black w3-hover-white w3-padding-16">Deep Learning Analysis</h2>
-                <h3>Neural Network Model and Changes to the Initial Models</h3>
+                <h2 id="topic-and-reason" class="toenail w3-padding-16">Deep Learning Analysis</h2>
+                <h3 class="w3-margin-left w3-margin-right">Neural Network Model and Changes to the Initial Models</h3>
                 <p>
                     In the final model, there were some changes made from the preliminary models:
                     <ul>
@@ -361,7 +362,7 @@
                     </ul>
                 </p>
                 <br>
-                <h3>The Results</h3>
+                <h3 class="w3-margin-left w3-margin-right">The Results</h3>
                 <center>
                     <table class="table table-striped text-nowrap" style="width:80%">
                         <thead class="table-header">
@@ -436,12 +437,14 @@
         </div>
     </div>
 
-    <h1 id="topic-and-reason" class="w3-center w3-black w3-hover-white w3-padding-16">Concussion Models</h1>
+    <h1 id="topic-and-reason" class="toenail w3-padding-16">Concussion Models
+        <a href="#" class="to-top w3-right"><i class="fa fa-arrow-up w3-margin-right"></i></a>
+    </h1>
 
-    <div class="w3-row w3-container">
+    <div class="w3-row-padding w3-container">
         <div class="w3-col s6">
             <div class="w3-card-4">
-                <h3 id="topic-and-reason" class="w3-center w3-black w3-hover-white w3-padding-16">Agglomerative Clustering</h3>
+                <h3 id="topic-and-reason" class="toenail w3-padding-16">Agglomerative Clustering</h3>
                 <p>
                     Similar to the Injury Analysis, the tables were merged including the tracking data,
                     creating a very large dataset. In order to perform the clustering analysis, there are
@@ -463,7 +466,7 @@
         </div>
         <div class="w3-col s6">
             <div class="w3-card-4">
-                <h3 id="topic-and-reason" class="w3-center w3-black w3-hover-white w3-padding-16">K-Means Clustering</h3>
+                <h3 id="topic-and-reason" class="toenail w3-padding-16">K-Means Clustering</h3>
                 <p>
                     Following the Agglomerative Clustering, we used PCA data extraction to reduce the
                     dimensions to 3 components. Testing for the ideal number of clusters for K-Means
@@ -558,14 +561,16 @@
     </div>
     
     
-    <!-- Footer -->
-    <footer class="w3-container blue-row">
+<!-- Footer -->
+<footer class="w3-container blue-row">
+    <NOBR>
         <p class="w3-large w3-col s4">Find the source code on
             <a href="https://github.com/FreshOats" class="button2" target="_blank"><span class="w3-xlarge">
                     <i class="fa fa-github icon layered"></i></span>GitHub</a>
         </p>
-        <a href="#" class="button w3-right"><i class="fa fa-arrow-up w3-margin-right"></i>Top</a>
-    </footer>
+    </NOBR>
+    <a href="#" class="button w3-right"><i class="fa fa-arrow-up w3-margin-right"></i>Top</a>
+</footer>
 
 </body>    
 
