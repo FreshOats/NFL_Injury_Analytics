@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" type='text/css' href="{{url_for('static', filename='css/style.css')}}">
 </head>
@@ -169,7 +169,9 @@
     <div class="col-container">
         <div class="w3-container w3-col s8">
             <div class="w3-display-container mySlides">
-                <img src="static/images/fact.jpg" style="width:100%">
+                <center>
+                    <img src="static/images/fact.jpg" style="width:100%;max-width:1600px;">
+                </center>
                 <div class="w3-display-middle w3-container w3-padding-32" style="text-shadow:2px 2px 0 rgb(40, 57, 94)">
                     <span class="w3-text-white w3-xlarge w3-animate-bottom">The NFL is committed to advancing progress in the
                         Diagnosis,
@@ -177,7 +179,9 @@
                 </div>
             </div>
             <div class="w3-display-container mySlides">
-                <img src="static/images/fact.jpg" style="width:100%">
+                <center>
+                    <img src="static/images/fact.jpg" style="width:100%;max-width:1600px;">
+                </center>
                 <div class="w3-display-middle w3-container w3-padding-32" style="text-shadow:2px 2px 0 rgb(40, 57, 94)">
                     <span class="w3-text-white w3-xlarge w3-animate-bottom">The NFL's ongoing health and safety efforts include
                         support for
@@ -185,7 +189,9 @@
                 </div>
             </div>
             <div class="w3-display-container mySlides">
-                <img src="static/images/fact.jpg" style="width:100%">
+                <center>
+                    <img src="static/images/fact.jpg" style="width:100%;max-width:1600px;">
+                </center>
                 <div class="w3-display-middle w3-container w3-padding-32" style="text-shadow:2px 2px 0 rgb(40, 57, 94)">
                     <span class="w3-text-white w3-xlarge w3-animate-bottom">A commitment to work to better protect players and
                         make the
@@ -194,21 +200,27 @@
                 </div>
             </div>
             <div class="w3-display-container mySlides">
-                <img src="static/images/fact.jpg" style="width:100%">
+                <center>
+                    <img src="static/images/fact.jpg" style="width:100%;max-width:1600px;">
+                </center>
                 <div class="w3-display-middle w3-container w3-padding-32" style="text-shadow:2px 2px 0 rgb(40, 57, 94)">
                     <span class="w3-text-white w3-xlarge w3-animate-bottom">The NFL evaluates and changes rules to evolve the
                         game and try to improve protections for players</span>
                 </div>
             </div>
             <div class="w3-display-container mySlides">
-                <img src="static/images/fact.jpg" style="width:100%">
+                <center>
+                    <img src="static/images/fact.jpg" style="width:100%;max-width:1600px;">
+                </center>
                 <div class="w3-display-middle w3-container w3-padding-32" style="text-shadow:2px 2px 0 rgb(40, 57, 94)">
                     <span class="w3-text-white w3-xlarge w3-animate-bottom">Since 2002 alone, the NFL has made 50 rules changes
                         intended to eliminate potentially dangerous tactics and reduce the risk of injuries</span>
                 </div>
             </div>
             <div class="w3-display-container mySlides">
-                <img src="static/images/fact.jpg" style="width:100%">
+                <center>
+                    <img src="static/images/fact.jpg" style="width:100%;max-width:1600px;">
+                </center>
                 <div class="w3-display-middle w3-container w3-padding-32" style="text-shadow:2px 2px 0 rgb(40, 57, 94)">
                     <span class="w3-text-white w3-xlarge w3-animate-bottom">Our Team's intention was to explore the data
                         leading to lower-body injuries and concussions to determine the features associated with these
@@ -216,15 +228,17 @@
                 </div>
             </div>
             <div class="w3-display-container mySlides">
-                <img src="static/images/fact.jpg" style="width:100%">
+                <center>
+                    <img src="static/images/fact.jpg" style="width:100%;max-width:1600px;">
+                </center>
                 <div class="w3-display-middle w3-container w3-padding-32" style="text-shadow:2px 2px 0 rgb(40, 57, 94)">
                     <span class="w3-text-white w3-xlarge w3-animate-bottom">... to create safer environment for our players,
                         while maintaining the features that define America's greatest sport</span>
                 </div>
             </div>
 
-            <div class="w3-left" onclick="plusDivs(-1)"><i class="fa fa-arrow-circle-left w3-xxlarge arrow-hover"></i></div>
-            <div class="w3-right" onclick="plusDivs(1)"><i class="fa fa-arrow-circle-right w3-xxlarge arrow-hover"></i></div>
+            <div class="w3-left" onclick="plusDivs(-1)"><i class="fa fa-arrow-circle-left w3-xxlarge arrow"></i></div>
+            <div class="w3-right" onclick="plusDivs(1)"><i class="fa fa-arrow-circle-right w3-xxlarge arrow"></i></div>
 
         </div>
 
@@ -264,13 +278,13 @@
     </div>
 
     
-  
+  <!-- Bottom Toenails -->
     <div class="w3-row-padding col-container">
         <div class="w3-col s2">
             <a href="{{url_for('replays')}}" target="_blank">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-white">The Replays</h3>
+                        <h3 class="toenail">The Replays</h3>
                         <p class="w3-center">Explore the Field by Position and Type of Injury</p>
                     </header>
                     <img src="static/images/FieldInjuryPlaysTab.png" alt="Tableau Field" style="width:100%">
@@ -282,7 +296,7 @@
             <a href="{{url_for('stats')}}" target="_blank">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-white">The Stats</h3>
+                        <h3 class="toenail">The Stats</h3>
                         <p class="w3-center">Interact with Injury Analyses</p>
                     </header>
                     <img src="static/images/Replays.png" alt="Bar Chart" style="width:100%">
@@ -294,7 +308,7 @@
             <a href="{{url_for('algorithm')}}">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-white">The Algorithm</h3>
+                        <h3 class="toenail">The Algorithm</h3>
                         <p class="w3-center">Examine the Machine Learning Models</p>
                     </header>
                     <img src="static/images/K-Means.png" alt="ML Analysis" style="width:100%">
@@ -307,7 +321,7 @@
             <a href="{{url_for('design')}}">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-white">The Design</h3>
+                        <h3 class="toenail">The Design</h3>
                         <p class="w3-center">Investigate the Data Sources and Organization</p>
                     </header>
                     <img src="static/images/PuntAnalytics_DB.png" alt="Database Image" style="width:100%">
@@ -319,7 +333,7 @@
             <a href="{{url_for('delivery')}}" target="_blank">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-white">The Delivery</h3>
+                        <h3 class="toenail">The Delivery</h3>
                         <p class="w3-center">Walk through the Stakeholder Presentation</p>
                     </header>
                     <img src="static/images/PresentationSlide1.png" alt="ML 3d Image" style="width:100%">
@@ -331,71 +345,23 @@
             <a href="{{url_for('report')}}">
                 <div class="w3-card-4">
                     <header>
-                        <h3 class="w3-center w3-black w3-hover-white">The Report</h3>
+                        <h3 class="toenail">The Report</h3>
                         <p class="w3-center">Review the Complete Project Analysis</p>
                     </header>
-                    <img src="static/images/database3.jpg" alt="Mathematical Slide" style="width:100%">
+                        <img src="static/images/database3.jpg" alt="Mathematical Slide" style="width:100%">
                 </div>
             </a>
         </div>
     </div>
 
    
-    <div class="w3-container">
-        <hr>
-        <h2 class="w3-center">The Team</h2>
-
-        <div class="w3-col s3">
-            <div class="w3-card-4">
-                <header>
-                    <a href="https://www.linkedin.com/in/justinpapreck/" target="_blank" rel="noopener noreferrer"><p class="w3-center w3-black w3-hover-dark-grey">Justin Papreck</p></a>
-                </header>
-            </div>
-        </div>
-
-        <div class="w3-col s2">
-            <div class="w3-card-4">
-                <header>
-                    <a href="https://www.linkedin.com/in/izzy-i-48ab79101/" target="_blank" rel="noopener noreferrer"><p class="w3-center w3-black w3-hover-dark-grey">Izzy Irazoque</p></a>
-                </header>
-            </div>
-        </div>
-
-        <div class="w3-col s2">
-            <div class="w3-card-4">
-                <header>
-                    <a href="https://www.linkedin.com/in/-amygaffney/" target="_blank" rel="noopener noreferrer">
-                        <p class="w3-center w3-black w3-hover-dark-grey">Amy Gaffney</p></a>
-                </header>
-            </div>
-        </div>
-
-        <div class="w3-col s2">
-            <div class="w3-card-4">
-                <header>
-                    <a href="" target="_blank" rel="noopener noreferrer">
-                        <p class="w3-center w3-black w3-hover-dark-grey">Vincent Fan</p></a>
-                </header>
-            </div>
-        </div>
-
-        <div class="w3-col s3">
-            <div class="w3-card-4">
-                <header>
-                    <a href="" target="_blank" rel="noopener noreferrer">
-                        <p class="w3-center w3-black w3-hover-dark-grey">Kevin Yturralde</p></a>
-                </header>
-            </div>
-        </div>
-
-    </div>
-
     <!-- Footer -->
-    <footer class="w3-container w3-theme-dark">
-        <p class=" w3-col s4">Find the source code on  <a href="https://github.com/FreshOats" class="w3-btn w3-theme-light"
+    <footer class="w3-container blue-row">
+        <p class="w3-large w3-col s4">Find the source code on  
+            <a href="https://github.com/FreshOats" class="button2"
                 target="_blank"><span class="w3-xlarge">
-                    <i class="fa fa-github"></i></span> GitHub</a></p>
-        <a href="#" class="w3-button w3-black w3-right"><i class="fa fa-arrow-up w3-margin-right"></i>Top</a>
+                    <i class="fa fa-github icon layered"></i></span>GitHub</a></p>
+        <a href="#" class="button w3-right"><i class="fa fa-arrow-up w3-margin-right"></i>Top</a>
     </footer>
 
 
@@ -502,6 +468,5 @@ function showDivs(n) {
 
 </script>
 
-</body>
 
 </html>
