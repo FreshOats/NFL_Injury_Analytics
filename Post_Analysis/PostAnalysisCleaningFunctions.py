@@ -410,4 +410,14 @@ def clean_noninjured(df, process):
         return df
 
     return df
-# 
+
+
+# The find_twist function determines the difference between the
+#  direction the player is running vs facing, adjusting for the differences in direction of play
+def find_twist(df):
+    df['new_o'] = abs(df.o - 180)
+    df['new_dir'] = abs(df.dir - 180)
+    df['Twist'] = abs(df.new_o - df.new_dir)
+    df.drop(columns=['dir', 'o', 'new_o', 'new_dir'], inplace=True)
+
+    return df
