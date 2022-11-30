@@ -11,6 +11,37 @@
 
 
 ########################## Primary Cleaning Functions ############################
+# This function cleans the Concussion data from the Punt Analytics
+def clean_punt(df, process):
+    
+    if process == 'vis':
+        # Load and Clean the data
+        df = column_capitalizer(df, 'punt')
+        df = surface_normalizer(df)
+        df = stadium_coder(df)
+        df = position_coder(df)
+        df = score_manager(df)
+        df = game_adjuster(df)
+        df = fake_id_maker(df)
+        return df
+
+    elif process == 'ml':
+        df = column_capitalizer(df, 'punt')
+        df = surface_normalizer(df)
+        df = surface_coder(df)
+        df = stadium_coder(df)
+        df = position_coder(df)
+        df = score_manager(df)
+        df = game_adjuster(df)
+        df = fake_id_maker(df)
+        return df
+
+    return df
+
+
+
+
+
 
 # This will clean and merge the injury data with an outer merge, containing all injury and 
 # non-injury data from playlist.cvs and injuryrecord.csv, maintaining categorical data in the Vis_ 
@@ -87,6 +118,10 @@ def clean_and_merge(playlist, injuries, process):
 
 
 
+
+
+
+
 ############################## Functions for ALL ANALYSES #############################
 # This Codes the Stadium Stype as either Indoor or Outdoor, necessary for ALL analysis
 
@@ -151,37 +186,47 @@ def column_capitalizer(df, df_name):
 def stadium_coder(df):
     df.StadiumType.fillna('Outdoor', inplace=True)
     
-    dict = {'Outdoor': 'Outdoor',
-        'Indoors': 'Indoor',
-        'Oudoor': 'Outdoor',
-        'Outdoors': 'Outdoor',
-        'Open': 'Outdoor',
-        'Closed Dome': 'Indoor',
-        'Domed, closed': 'Indoor',
-        'Dome': 'Indoor',
-        'Indoor': 'Indoor',
-        'Domed': 'Indoor',
-        'Retr. Roof-Closed': 'Indoor',
-        'Outdoor Retr Roof-Open': 'Outdoor',
-        'Retractable Roof': 'Indoor',
-        'Ourdoor': 'Outdoor',
-        'Indoor, Roof Closed': 'Indoor',
-        'Retr. Roof - Closed': 'Indoor',
-        'Bowl': 'Outdoor',
-        'Outddors': 'Outdoor',
-        'Retr. Roof-Open': 'Outdoor',
-        'Dome, closed': 'Indoor',
-        'Indoor, Open Roof': 'Outdoor',
-        'Domed, Open': 'Outdoor',
-        'Domed, open': 'Outdoor',
-        'Heinz Field': 'Outdoor',
-        'Cloudy': 'Outdoor',
-        'Retr. Roof - Open': 'Outdoor',
-        'Retr. Roof Closed': 'Indoor',
-        'Outdor': 'Outdoor',
-        'Outside': 'Outdoor'}
+    stadiums = {'Outdoor': 'Outdoor',
+               'outdoor': 'Outdoor',
+               'Indoors': 'Indoor',
+               'Indoors (Domed)': 'Indoor',
+               'Oudoor': 'Outdoor',
+               'Outdoors': 'Outdoor',
+               'Outdoors ': 'Outdoor',
+               'Open': 'Outdoor',
+               'Closed Dome': 'Indoor',
+               'Domed, closed': 'Indoor',
+               'Dome': 'Indoor',
+               'Indoor': 'Indoor',
+               'Domed': 'Indoor',
+               'Retr. Roof-Closed': 'Indoor',
+               'Outdoor Retr Roof-Open': 'Outdoor',
+               'Retractable Roof': 'Indoor',
+               'Ourdoor': 'Outdoor',
+               'Indoor, Roof Closed': 'Indoor',
+               'Retr. Roof - Closed': 'Indoor',
+               'Bowl': 'Outdoor',
+               'Outddors': 'Outdoor',
+               'Retr. Roof-Open': 'Outdoor',
+               'Dome, closed': 'Indoor',
+               'Indoor, Open Roof': 'Outdoor',
+               'Domed, Open': 'Outdoor',
+               'Domed, open': 'Outdoor',
+               'Heinz Field': 'Outdoor',
+               'Cloudy': 'Outdoor',
+               'Retr. Roof - Open': 'Outdoor',
+               'Retr. Roof Closed': 'Indoor',
+               'Outdor': 'Outdoor',
+               'Outside': 'Outdoor',
+               'Indoor, non-retractable roof': 'Indoor',
+               'Retr. roof - closed': 'Indoor',
+               'Indoor, fixed roof ': 'Indoor',
+               'Indoor, Non-Retractable Dome': 'Indoor',
+               'Indoor, Fixed Roof': 'Indoor',
+               'Indoor, fixed roof': 'Indoor'}
+    
 
-    df.StadiumType.replace(dict, inplace=True)
+    df.StadiumType.replace(stadiums, inplace=True)
 
     # Create a new column with stadiums coded numerically
     stadium = {
@@ -362,7 +407,8 @@ def position_coder(df):
         'FS': 27,
         'P': 28,
         'PR': 29,
-        'HB': 30
+        'HB': 30, 
+        'LS': 31
     }
 
     df.RosterPosition.replace(position, inplace=True)
@@ -389,7 +435,33 @@ def surface_coder(df):
     df['SyntheticField'] = df.FieldType.map(surface_map)
     return df
 
+# This function changes the different types of turfs listed in the punt group to either Natural or Synthetic
+def surface_normalizer(df):
+    turfs = {
+        'Grass': 'Natural',
+        'Field Turf': 'Synthetic',
+        'Natural Grass': 'Natural',
+        'grass': 'Natural',
+        'Artificial': 'Synthetic',
+        'FieldTurf': 'Synthetic',
+        'DD GrassMaster': 'Synthetic',
+        'A-Turf Titan': 'Synthetic',
+        'UBU Sports Speed S5-M': 'Synthetic',
+        'UBU Speed Series S5-M': 'Synthetic',
+        'Artifical': 'Synthetic',
+        'UBU Speed Series-S5-M': 'Synthetic',
+        'FieldTurf 360': 'Synthetic',
+        'Natural grass': 'Natural',
+        'Field turf': 'Synthetic',
+        'Natural': 'Natural',
+        'Natrual Grass': 'Natural',
+        'Synthetic': 'Synthetic',
+        'Natural Grass ': 'Natural',
+        'Naturall Grass': 'Natural',
+        'FieldTurf360': 'Synthetic'}
 
+    df['FieldType'] = df.Turf.map(turfs)
+    return df
 
 # This function fills the NaN values after performing an outer merge 
 def clean_noninjured(df, process):
@@ -419,5 +491,39 @@ def find_twist(df):
     df['new_dir'] = abs(df.dir - 180)
     df['Twist'] = abs(df.new_o - df.new_dir)
     df.drop(columns=['dir', 'o', 'new_o', 'new_dir'], inplace=True)
+
+    return df
+
+
+# The Score Manager function takes the Home_Away scores from the Punt_Analytics dataset and creates a new column with the home score, 
+# and it also creates a column with the home-away difference, since there is a potential that the score difference correlates with the injuries 
+def score_manager(df): 
+    df['HomeScore'] = df.Score_Home_Visiting.apply(lambda row: [int(score) for score in row.split() if score.isdigit()][0])
+    df['Home_Away_Difference'] = df.Score_Home_Visiting.apply(lambda row: 
+        [int(score) for score in row.split() if score.isdigit()][0] - int(score) for score in row.split() if score.isdigit()[1])
+
+    df.drop(columns='Score_Home_Visiting', inplace=True)
+    
+    return df
+
+
+# Game Adjuster - the games in the Punt datasets reset at 1 for each subseason, so preseason is always game 1, 
+# then reg season starts at game 1, and post at game 1. Since it's likely that the concussions will increase as the 
+# year progresses, we need to fix this so that preseason starts at 1, then the first game of reg is 5, and post at 23
+def game_adjuster(df): 
+    import numpy as np
+    df.Week = np.where(df.Season_Type == 'Reg', df.Week + 5, df.Week)
+    df.Week = np.where(df.Season_Type == 'Post', df.Week + 22, df.Week)
+    df.drop(columns='Season_Type', inplace=True)
+
+    return df
+
+# The Punt tables don't have a unique identifier, so we will need to create unique identifiers for them
+def fake_id_maker(df):
+    cols = ['GameKey', 'PlayID']
+    player_cols = ['GameKey', 'PlayID', 'GSISID']
+
+    df['GamePlay'] = df[cols].apply(lambda row: '-'.join(row.values.astype(str)), axis=1)
+    df['GamePlay_ID'] = df[player_cols].apply(lambda row: '-'.join(row.values.astype(str)), axis=1)
 
     return df
