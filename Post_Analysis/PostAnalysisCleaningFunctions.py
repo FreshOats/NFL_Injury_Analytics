@@ -19,10 +19,19 @@ def clean_punt(df, process):
         df = column_capitalizer(df, 'punt')
         df = surface_normalizer(df)
         df = stadium_coder(df)
-        df = position_coder(df)
+        df = position_coder(df, 'punt', 'vis')
         df = score_manager(df)
         df = game_adjuster(df)
         df = fake_id_maker(df)
+        df.drop(columns=['GameKey',
+                         'PlayID',
+                         'GSISID',
+                         'Role', 
+                         'Outdoor', 
+                         'Weather', 
+                         'Temperature'], inplace=True)
+        df.drop_duplicates(inplace=True)
+        df.reset_index(drop=True, inplace=True)
         return df
 
     elif process == 'ml':
@@ -30,10 +39,20 @@ def clean_punt(df, process):
         df = surface_normalizer(df)
         df = surface_coder(df)
         df = stadium_coder(df)
-        df = position_coder(df)
+        df = position_coder(df, 'punt', 'ml')
         df = score_manager(df)
         df = game_adjuster(df)
         df = fake_id_maker(df)
+        df.drop(columns=['GameKey',
+                         'PlayID',
+                         'GSISID',
+                         'Role',
+                         'StadiumType',
+                         'Weather', 
+                         'Temperature', 
+                         'FieldType'], inplace=True)
+        df.drop_duplicates(inplace=True)
+        df.reset_index(drop=True, inplace=True)
         return df
 
     return df
@@ -347,11 +366,8 @@ def injury_duration_coder(df, process):
 # This function returns all positions as 
 # the 1-2 letter abbreviations for all position, and supplies a numerical version for ml, 
 # the unneccessary columns will be removed before merging the tables
-def position_coder(df):
+def position_coder(df, dataset='injury', process='vis'):
     import numpy as np
-
-    df['Position'] = np.where(
-        df['Position'] == 'Missing Data', df['RosterPosition'], df['Position'])
 
     position = {
         'Quarterback': 'QB',
@@ -411,16 +427,30 @@ def position_coder(df):
         'LS': 31
     }
 
-    df.RosterPosition.replace(position, inplace=True)
-    df.Position.replace(position, inplace=True)
+    if dataset == 'injury':
+        df['Position'] = np.where(
+            df['Position'] == 'Missing Data', df['RosterPosition'], df['Position'])
 
-    df['RosterPosition_Num'] = df.RosterPosition.map(numerical)
-    df.RosterPosition_Num.astype(int)
+        df.RosterPosition.replace(position, inplace=True)
+        df.Position.replace(position, inplace=True)
 
-    df['Position_Num']= df.Position.map(numerical)
-    df.Position_Num.astype(int)
+        df['RosterPosition_Num'] = df.RosterPosition.map(numerical)
+        df.RosterPosition_Num.astype(int)
 
-    df.drop(columns='PositionGroup', inplace=True)
+        df['Position_Num']= df.Position.map(numerical)
+        df.Position_Num.astype(int)
+
+        df.drop(columns='PositionGroup', inplace=True)
+        return df
+
+    elif dataset == 'punt':
+        df.dropna(subset=['Position'], inplace=True)
+        if process == 'ml':
+            df.Position.replace(numerical, inplace=True)
+            df.Position.astype(int)
+            return df
+        else: 
+            return df
 
     return df
 
@@ -432,6 +462,8 @@ def surface_coder(df):
         'Natural': 0,
         'Synthetic': 1
     }
+
+    
     df['SyntheticField'] = df.FieldType.map(surface_map)
     return df
 
@@ -461,6 +493,7 @@ def surface_normalizer(df):
         'FieldTurf360': 'Synthetic'}
 
     df['FieldType'] = df.Turf.map(turfs)
+    df.drop(columns='Turf', inplace=True)
     return df
 
 # This function fills the NaN values after performing an outer merge 
@@ -499,8 +532,8 @@ def find_twist(df):
 # and it also creates a column with the home-away difference, since there is a potential that the score difference correlates with the injuries 
 def score_manager(df): 
     df['HomeScore'] = df.Score_Home_Visiting.apply(lambda row: [int(score) for score in row.split() if score.isdigit()][0])
-    df['Home_Away_Difference'] = df.Score_Home_Visiting.apply(lambda row: 
-        [int(score) for score in row.split() if score.isdigit()][0] - int(score) for score in row.split() if score.isdigit()[1])
+    df['Score_Difference'] = df.Score_Home_Visiting.apply(lambda row: [int(score) for score in row.split(
+    ) if score.isdigit()][0] - [int(score) for score in row.split() if score.isdigit()][1])
 
     df.drop(columns='Score_Home_Visiting', inplace=True)
     
