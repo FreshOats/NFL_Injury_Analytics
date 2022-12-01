@@ -71,7 +71,7 @@ CREATE TABLE player_punt_data (
 
 
 
-CREATE TABLE ngs (
+CREATE TABLE ngs_2016 (
 	season_year INT,
 	gamekey INT,
 	playid INT,
@@ -84,3 +84,39 @@ CREATE TABLE ngs (
 	dir FLOAT,
 	g_event VARCHAR(100)
 );
+
+
+CREATE TABLE ngs_2017 ( 
+	season_year INT, 
+	gamekey INT, 
+	playid INT, 
+	gsisid FLOAT,
+	g_time VARCHAR(100),
+	x FLOAT, 
+	y FLOAT, 
+	dis FLOAT, 
+	o FLOAT, 
+	dir FLOAT, 
+	g_event VARCHAR(100)
+);
+
+CREATE TABLE ngs AS
+SELECT *
+FROM ngs_2016
+UNION
+SELECT *
+FROM ngs_2017;
+
+CREATE TABLE review (
+	season_year INT,
+	gamekey INT,
+	playid INT,
+	gsisid INT,
+	player_activity VARCHAR(200),
+	turnover_related VARCHAR(200),
+	impact_type VARCHAR(50),
+	partner_gsisid VARCHAR(50),  -- Note, there were some values entered as 'unknown', so this field cannot be entered as INT
+	partner_activity VARCHAR(200),
+	friendly_fire VARCHAR(50)
+);
+
