@@ -16,15 +16,83 @@
 <body>
 
     <!-- Stats Ticker -->
-    <header class="w3-container w3-padding" id="myHeader">
-        <div class="w3-center">
-            <h1 class="w3-xxxlarge w3-animate-bottom">Injury Statistics - this will rotate through the findings</h1>
-         
-            
-
-
+    <!-- The grid: four columns -->
+    <div class="row">
+        <div class="column">
+            <img src="static/images/Post_Injuries_Days_Played.png" width="100%" alt="Days Played" onclick="myFunction(this);">
         </div>
-    </header>
+        <div class="column">
+            <img src="static/images/Post_Injuries_Duration.png" alt="Duration"  width="100%" onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="static/images/Post_Injuries_Duration_Field_Type.png" alt="Duration Field Type"  width="100%" onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="static/images/Post_Injuries_Field_Type.png" alt="Field Type" width="100%"  onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="static/images/Post_Injuries_Total.png" alt="Total" width="100%"  onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="static/images/Post_Injuries_Position.png" alt="Position"  width="100%" onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="static/images/Post_Injury_Duration_Position.png" alt="Position Duration"  width="100%" onclick="myFunction(this);">
+        </div>
+    </div>
+    
+    <!-- The expanding image container -->
+    <div class="container">
+        <!-- Close the image -->
+        <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    
+        <!-- Expanded image -->
+        <img id="expandedImg" style="width:50%">
+    
+        <!-- Image text -->
+        <div id="imgtext"></div>
+    </div>
+
+
+
+
+
+
+    <!-- <header class="w3-container" id="myHeader">
+        <div class="w3-display-container">
+            <div class="Ticker">
+                <div class="w3-col s8">
+                    <q>I love you the more in that I believe you had liked me for my own sake and for nothing else</q>
+                </div>
+                <div class="w3-col s4">
+                    <img src="static/images/Post_Injuries_Days_Played.png" style="height:100%;max-height:200px;">
+                </div>
+            </div>
+        
+            <div class="Ticker">
+                <div class="w3-col s8">
+                    <q>But man is not made for defeat. A man can be destroyed but not defeated.</q>
+                </div>
+                <div class="w3-col s4">
+                    <img src="static/images/Post_Injuries_Days_Played.png" style="height:100%;max-height:200px;">
+                </div>
+            </div>
+        
+            <div class="Ticker">
+                <div class="w3-col s8">
+                    <q>I have not failed. I've just found 10,000 ways that won't work.</q>
+                </div>
+                <div class="w3-col s4">
+                    <img src="static/images/Post_Injuries_Days_Played.png" style="height:100%;max-height:200px;">
+                </div>
+            </div>
+        </div>
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </header> -->
 
    
     <!-- Side Dropdown Modals -->
@@ -382,6 +450,8 @@ var modal3 = document.getElementById('id03');
 var modal4 = document.getElementById('id04');
 var modal5 = document.getElementById('id05');
 
+
+
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
 if (event.target == modal1) {
@@ -438,7 +508,7 @@ function move() {
   }
 }
 
-// Slideshow
+// Slideshow 
 var slideIndex = 1;
 showDivs(slideIndex);
 
@@ -464,6 +534,49 @@ function showDivs(n) {
     }
     x[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " w3-white";
+}
+
+
+// Ticker 
+// var statIndex = 1;
+// statSlides(statIndex);
+
+// function plusSlides(n) {
+//     statSlides(statIndex += n);
+// }
+
+// function currentSlide(n) {
+//     statSlides(statIndex = n);
+// }
+
+// function statSlides(n) {
+//     var i;
+//     var slides = document.getElementsByClassName("Ticker");
+//     var dot = document.getElementsByClassName("dot");
+//     if (n > slides.length) { statIndex = 1 }
+//     if (n < 1) { statIndex = slides.length }
+//     for (i = 0; i < slides.length; i++) {
+//         slides[i].style.display = "none";
+//     }
+//     for (i = 0; i < dot.length; i++) {
+//         dot[i].className = dot[i].className.replace(" active", "");
+//     }
+//     slides[statIndex - 1].style.display = "block";
+//     dot[statIndex - 1].className += " active";
+// }
+
+
+function myFunction(imgs) {
+    // Get the expanded image
+    var expandImg = document.getElementById("expandedImg");
+    // Get the image text
+    var imgText = document.getElementById("imgtext");
+    // Use the same src in the expanded image as the image being clicked on from the grid
+    expandImg.src = imgs.src;
+    // Use the value of the alt attribute of the clickable image as text inside the expanded image
+    imgText.innerHTML = imgs.alt;
+    // Show the container element (hidden with CSS)
+    expandImg.parentElement.style.display = "block";
 }
 
 
