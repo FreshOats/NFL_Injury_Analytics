@@ -15,15 +15,53 @@
 <body>
 
     <!-- Stats Ticker -->
-    <header class="w3-container w3-padding" id="myHeader">
-        <div class="w3-center">
-            <h1 class="w3-xxxlarge w3-animate-bottom">Injury Statistics - this will rotate through the findings</h1>
-         
-            
-
-
+    <!-- The grid: four columns -->
+    <div class="row">
+        <div class="column">
+            <img src="../static/images/Post_Injuries_Days_Played.png" width="100%" alt="Days Played"
+                onclick="myFunction(this);">
         </div>
-    </header>
+        <div class="column">
+            <img src="../static/images/Post_Injuries_Duration.png" alt="Duration" width="100%" onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="../static/images/Post_Injuries_Duration_Field_Type.png" alt="Duration Field Type" width="100%"
+                onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="../static/images/Post_Injuries_Field_Type.png" alt="Field Type" width="100%" onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="../static/images/Post_Injuries_Total.png" alt="Total" width="100%" onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="../static/images/Post_Injuries_Position.png" alt="Position" width="100%" onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="../static/images/Post_Injury_Duration_Position.png" alt="Position Duration" width="100%"
+                onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="../static/images/Post_Concussion_Field_Type.png" alt="Concussion Field Type" width="100%"
+                onclick="myFunction(this);">
+        </div>
+        <div class="column">
+            <img src="../static/images/Post_Concussion_Position.png" alt="Concussion Position" width="100%"
+                onclick="myFunction(this);">
+        </div>
+    </div>
+
+    <!-- The expanding image container -->
+    <div class="container">
+        <!-- Close the image -->
+        <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+
+        <!-- Expanded image -->
+        <img id="expandedImg" style="width:50%">
+
+        <!-- Image text -->
+        <div id="imgtext"></div>
+    </div>
 
    
     <!-- Top Bar -->

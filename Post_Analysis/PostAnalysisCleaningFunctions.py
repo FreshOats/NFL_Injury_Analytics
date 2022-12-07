@@ -23,13 +23,13 @@ def clean_punt(df, process):
         df = score_manager(df)
         df = game_adjuster(df)
         df = fake_id_maker(df)
+        df = find_twist(df)
         df.drop(columns=['GameKey',
-                         'PlayID',
-                         'GSISID',
-                         'Role', 
-                         'Outdoor', 
-                         'Weather', 
-                         'Temperature'], inplace=True)
+                        'PlayID',
+                        'GSISID',
+                        'Outdoor',
+                        'season_year', 
+                        'Turnover_Related'], inplace=True)
         df.drop_duplicates(inplace=True)
         df.reset_index(drop=True, inplace=True)
         return df
@@ -43,14 +43,18 @@ def clean_punt(df, process):
         df = score_manager(df)
         df = game_adjuster(df)
         df = fake_id_maker(df)
+        df = find_twist(df)
+        df = play_maker(df)
+        df = impact_maker(df)
+
         df.drop(columns=['GameKey',
                          'PlayID',
                          'GSISID',
-                         'Role',
                          'StadiumType',
-                         'Weather', 
-                         'Temperature', 
-                         'FieldType'], inplace=True)
+                         'Turnover_Related',
+                         'FieldType', 
+                         'g_time',
+                         'season_year'], inplace=True)
         df.drop_duplicates(inplace=True)
         df.reset_index(drop=True, inplace=True)
         return df
@@ -192,7 +196,10 @@ def column_capitalizer(df, df_name):
             'turf': 'Turf',
             'gameweather': 'Weather',
             'temperature': 'Temperature',
-            'score_home_visiting': 'Score_Home_Visiting'
+            'score_home_visiting': 'Score_Home_Visiting', 
+            'player_activity': 'Player_Activity',
+            'turnover_related': 'Turnover_Related',
+            'impact_type': 'Impact_Type'
         }
 
     df = df.rename(columns=columns)
@@ -559,4 +566,29 @@ def fake_id_maker(df):
     df['GamePlay'] = df[cols].apply(lambda row: '-'.join(row.values.astype(str)), axis=1)
     df['GamePlay_ID'] = df[player_cols].apply(lambda row: '-'.join(row.values.astype(str)), axis=1)
 
+    return df
+
+
+# The Punt tables have 4 unique types of plays associated with concussions: Blocked, Blocking, Tackled, Tackling, which need to be coded for ML 
+def play_maker(df):
+    activities = {
+        'None': 0,
+        'Blocking': 1, 
+        'Blocked': 2, 
+        'Tackling': 3, 
+        'Tackled': 4
+    }
+    df.Player_Activity.replace(activities, inplace=True)
+
+    return df
+
+def impact_maker(df):
+    impacts = {
+        'None': 0,
+        'Helmet-to-body': 1, 
+        'Helmet-to-helmet': 2, 
+        'Helmet-to-ground': 3,
+        'Unclear': 4
+    }
+    df.Impact_Type.replace(impacts, inplace=True)
     return df

@@ -167,7 +167,7 @@ a:hover {
 /* The grid: Four equal columns that floats next to each other */
 .column {
     float: center;
-    width: 10%;
+    width: 9%;
     margin-left: 32px;
 }
 
@@ -187,6 +187,7 @@ a:hover {
     display: table;
     clear: both;
 }
+
 
 /* The expanding image container (positioning is needed to position the close button and the text) */
 .container {
