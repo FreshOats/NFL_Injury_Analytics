@@ -8,7 +8,6 @@ bottleneck
 brotlipy
 bs4
 comtypes
-cython
 cytoolz
 datashader
 distributed
