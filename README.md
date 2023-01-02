@@ -1,6 +1,7 @@
 # NFL Injury Analysis
 ***Using Machine Learning and Data Analysis to Visualize and Identify Conditions Leading to Injuries in Football***
-#### *by* Amy Gaffney, Izzy Irazoque, Kevin Ytturalde, Vincent Fan, and Justin Papreck
+#### *by* Justin R. Papreck 
+##### *with contributions by* Amy Gaffney, Izzy Irazoque, Kevin Ytturalde, and Vincent Fan
 
 --- 
 ***Contents***
@@ -19,7 +20,7 @@
 ---
 # Topic and Reason
 
-In recent years, more concern has grown over sustained injuries that impact the athletes lives long after their athletic career ends. The NFL is looking to identify what changes should be made to minimize the risk of player injury, while not completely altering America's favorite pastime. There are several types of injuries that are incurred - there are gross physiological injuries such as knee, foot, and ankle injuries, and there are also more subtle injuries such as concussions, which can have a much longer-lasting impact on the players, occasionally leading to personality changes and unfortanately, even suicide. It's clear that changes need to be made to address these concerns, but the conflicting view is that the NFL is a multi-billion dollar industry, generating a revenue of over 17 billion dollars in 2021 alone. While changes need to be made, they only impact a fraction of the players. In order to minimize the risk of all players, it's important for the NFL to maintain most of the features of the game if they can modify only certain aspects in order to better ensure the medical safety of their players.
+In recent years, more concern has grown over sustained injuries that impact the athletes' lives long after their athletic careers end. The NFL is looking to identify what changes should be made to minimize the risk of player injury, while not completely altering America's favorite pastime. There are several types of injuries that are incurred - there are gross physiological injuries such as knee, foot, and ankle injuries, and there are also more subtle injuries such as concussions, which can have a much longer-lasting impact on the players, occasionally leading to personality changes and unfortanately, even suicide. It's clear that changes need to be made to address these concerns, but the conflicting view is that the NFL is a multi-billion dollar industry, generating a revenue of over 17 billion dollars in 2021 alone. While changes need to be made, they only impact a fraction of the players. In order to minimize the risk of all players, it's important for the NFL to maintain most of the features of the game if they can modify only certain aspects in order to better ensure the medical safety of their players.
 
 There are several questions we seek to answer: 
 1. Are the lower-body injuries strictly associated with a combination or play, field type, weather, and temperature, or is the specific movement on the field required to precisely identify the occurrence of such injuries? 
@@ -444,7 +445,7 @@ website link: https://ljvince.github.io/final-capstone/website/index.html
 
 ### Presentation
 The stakeholder presentation is available on Google Slides: 
-[NFL Injury Analysis](https://docs.google.com/presentation/d/1JuRKtG8ZdwiY1gHwosXbu1rs_UrsjU8sO4iqMHOnGEc/edit?usp=sharing)
+[NFL Injury Analysis](https://docs.google.com/presentation/d/1fRDI2eFLT_7ZdAf9S3-PZtfRMYzVHjMpFVG8R-r_LIs/edit?usp=sharing)
 
 ![PresentationSlide1](https://user-images.githubusercontent.com/33167541/199598351-b3c81bf9-d9fb-4ec1-8e86-c210faa29759.png)
 
