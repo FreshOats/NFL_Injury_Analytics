@@ -1,4 +1,3 @@
-anaconda-project
 ann-visualizer
 astropy
 autopep8
@@ -9,7 +8,6 @@ bottleneck
 brotlipy
 bs4
 comtypes
-conda-token
 cython
 cytoolz
 datashader
