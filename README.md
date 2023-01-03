@@ -3,6 +3,8 @@
 #### *by* Justin R. Papreck 
 ##### *with contributions by* Amy Gaffney, Izzy Irazoque, Kevin Ytturalde, and Vincent Fan
 
+[NFL Injury Analytics](https://nfl-injury-analytics.onrender.com/)
+
 --- 
 ***Contents***
 1. Topic and Reason
@@ -438,9 +440,7 @@ The machine learning page presents the findings of the final models for the Inju
 <br><br><br>
 
 ### Home Page
-website link: https://ljvince.github.io/final-capstone/website/index.html
-
-![ljvince github io](https://user-images.githubusercontent.com/106010498/199627405-8a597f12-74a5-4fa9-8074-ce27c5074e88.png)
+website link: https://nfl-injury-analytics.onrender.com/
 
 
 ### Presentation
